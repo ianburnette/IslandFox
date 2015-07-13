@@ -10,6 +10,11 @@ public class PlayerMove : MonoBehaviour
 	//custom
 	public float additionalGravityForce;
 	public float jumpStopSpeed;
+	public Animator anim;
+	public cameraChanger camChange;
+	public bool haveCameraFocus = true;
+	private Vector3 camFocusLocation;
+	public Transform myCamFocus;
 
 	//setup
 	public bool sidescroller;					//if true, won't apply vertical input
@@ -53,6 +58,9 @@ public class PlayerMove : MonoBehaviour
 	//setup
 	void Awake()
 	{
+		camFocusLocation = myCamFocus.position;
+		camChange = GetComponent<cameraChanger> ();
+		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
 		//create single floorcheck in centre of object, if none are assigned
 		if(!floorChecks)
@@ -108,8 +116,87 @@ public class PlayerMove : MonoBehaviour
 		else
 			direction = Vector3.right * h;
 		moveDirection = transform.position + direction;
+		Animate (moveDirection, h, v);
 	}
-	
+
+	void Animate(Vector3 moveDir, float h, float v){
+		anim.SetBool ("grounded", grounded);
+		anim.SetFloat ("xDir", h);
+		anim.SetFloat ("zDir", v);
+
+		if (h != 0 || v != 0) {
+			anim.SetBool ("moving", true);
+		} else {
+			anim.SetBool ("moving", false);
+		}
+
+		if (Mathf.Abs (h) >= Mathf.Abs (v)) { //moving right
+			if (h > 0) {
+				if (anim.GetBool("movingE") != true){
+					anim.SetBool ("movingE", true);
+					anim.SetBool ("movingW", false);
+					anim.SetBool ("movingS", false);
+					anim.SetBool ("movingN", false);
+				}
+			} else if (h < 0) {
+				if (anim.GetBool("movingW") != true){
+					anim.SetBool ("movingW", true);
+					anim.SetBool ("movingE", false);
+					anim.SetBool ("movingS", false);
+					anim.SetBool ("movingN", false);
+				}
+			}
+		} else if (Mathf.Abs (v) > Mathf.Abs (h)) {
+			if (v>0){
+				if (anim.GetBool("movingN") != true){
+					anim.SetBool ("movingN", true);
+					anim.SetBool ("movingE", false);
+					anim.SetBool ("movingS", false);
+					anim.SetBool ("movingW", false);
+				}
+			}else if (v<0){
+				if (anim.GetBool("movingS") != true){
+					anim.SetBool ("movingS", true);
+					anim.SetBool ("movingE", false);
+					anim.SetBool ("movingN", false);
+					anim.SetBool ("movingW", false);
+				}
+			}
+
+		}
+
+//		if (Mathf.Abs (moveDir.x) > Mathf.Abs (moveDir.z)) {
+//			if (moveDir.x > 0) {
+//				anim.SetBool ("movingE", true);
+//				anim.SetBool ("movingW", false);
+//				anim.SetBool ("movingS", false);
+//				anim.SetBool ("movingN", false);
+//			} else if (moveDir.x < 0) {
+//				anim.SetBool ("movingW", true);
+//				anim.SetBool ("movingE", false);
+//				anim.SetBool ("movingS", false);
+//				anim.SetBool ("movingN", false);
+//			}
+//		} else if (Mathf.Abs (moveDir.x) < Mathf.Abs (moveDir.z)) {
+//			if (moveDir.z > 0) {
+//				anim.SetBool ("movingN", true);
+//				anim.SetBool ("movingW", false);
+//				anim.SetBool ("movingS", false);
+//				anim.SetBool ("movingE", false);
+//			} else if (moveDir.z < 0) {
+//				anim.SetBool ("movingS", true);
+//				anim.SetBool ("movingE", false);
+//				anim.SetBool ("movingW", false);
+//				anim.SetBool ("movingN", false);
+//			}
+//		} else {
+//			anim.SetBool ("movingS", false);
+//			anim.SetBool ("movingE", false);
+//			anim.SetBool ("movingW", false);
+//			anim.SetBool ("movingN", false);
+//		}
+	}
+
 	//apply correct player movement (fixedUpdate for physics calculations)
 	void FixedUpdate() 
 	{
@@ -156,6 +243,7 @@ public class PlayerMove : MonoBehaviour
 			RaycastHit hit;
 			if(Physics.Raycast(check.position, Vector3.down, out hit, dist + 0.05f))
 			{
+				//print (hit.transform.tag);
 				if(!hit.transform.GetComponent<Collider>().isTrigger)
 				{
 					//slope control
@@ -180,6 +268,7 @@ public class PlayerMove : MonoBehaviour
 					if (hit.transform.tag == "MovingPlatform" || hit.transform.tag == "Pushable")
 					{
 						movingObjSpeed = hit.transform.GetComponent<Rigidbody>().velocity;
+						print ("moving object speed is " + movingObjSpeed);
 						movingObjSpeed.y = 0f;
 						//9.5f is a magic number, if youre not moving properly on platforms, experiment with this number
 						GetComponent<Rigidbody>().AddForce(movingObjSpeed * movingPlatformFriction * Time.fixedDeltaTime, ForceMode.VelocityChange);
@@ -187,6 +276,15 @@ public class PlayerMove : MonoBehaviour
 					else
 					{
 						movingObjSpeed = Vector3.zero;
+					}
+					if (hit.transform.tag == "LargeFlower" && haveCameraFocus){
+						camChange.Change(hit.transform.root.GetChild (0).position, false);
+						haveCameraFocus = false;
+					}
+					if (!haveCameraFocus && hit.transform.tag != "LargeFlower"){
+						camChange.Change (camFocusLocation, true);
+						haveCameraFocus = true;
+						print ("switching back");
 					}
 					//yes our feet are on something
 					return true;

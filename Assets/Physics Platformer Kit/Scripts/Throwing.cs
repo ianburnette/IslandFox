@@ -64,6 +64,7 @@ public class Throwing : MonoBehaviour
 		//when we press grab button, throw object if we're holding one
 		if (Input.GetButtonDown ("Grab") && heldObj && Time.time > timeOfPickup + 0.1f)
 		{
+			print ("grabbing");
 			if(heldObj.tag == "Pickup") 
 				ThrowPickup();
 		}		

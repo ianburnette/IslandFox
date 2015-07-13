@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
 	public float speedGain = 0.2f;							//how fast coin accelerates toward player when they're near
 	
 	private bool collected;
-	private Transform player;
+	public Transform player;
 	private TriggerParent triggerParent;	//this is a utility class, that lets us check if the player is close to the coins "bounds sphere trigger"
 	
 	//setup
@@ -45,7 +45,7 @@ public class Coin : MonoBehaviour
 	
 	void Start()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		player = GameObject.Find("Player").transform;
 	}
 	
 	//move coin toward player when he is close to it, and increase the spin/speed of the coin
@@ -67,8 +67,10 @@ public class Coin : MonoBehaviour
 	//give player coin when it touches them
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player")
-			CoinGet();
+		if (other.tag == "Player") {
+			CoinGet ();
+			player = other.transform;
+		}
 	}
 	
 	void CoinGet()
