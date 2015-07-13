@@ -37,7 +37,8 @@ public class boatCollider : MonoBehaviour {
 		player.transform.parent = null;
 		player.gameObject.SetActive (true);
 		player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-		player.GetComponent<Rigidbody>().AddForce (Vector3.up * pushHeight, ForceMode.VelocityChange);
+		GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+		//player.GetComponent<Rigidbody>().AddForce (Vector3.up * pushHeight, ForceMode.VelocityChange);
 		Invoke ("EnableTrigger", 1f);
 		controls.enabled = false;
 		inBoatSprite.SetActive(false);
