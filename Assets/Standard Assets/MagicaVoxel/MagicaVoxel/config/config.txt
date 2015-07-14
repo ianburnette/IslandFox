@@ -1,0 +1,49 @@
+// [GLTRACY 04/15/2014]
+render
+(
+	// 0 ~ 255
+	groundColor		= '179 217 255'
+
+	// 0 ~ 255
+	edgeColor		= '255 51 102'
+
+	// 0.0 ~ 1.0
+	ambientColor		= '0.05 0.03 0.13'
+	
+	// 0.0 ~ 1.0
+	bgColor_top		= '0 0 0'
+	bgColor_bottom		= '1 1 1'
+)
+
+model
+(
+	// default save and load file type
+	default_type		= 'vox'
+)
+
+file_obj
+(
+	scale			= '1 1 1'
+	pivot			= '0 0 -1'	// -1 : min, 0 : center, 1 : max
+	tc_offset		= '0.5 0.5' 	// 0 : corner, 0.5 : center
+	cw			= '0'		// 0 : counter clockwise, 1 : clockwise
+	axis			= 'XZ-Y'	// 'XYZ' : Z up, 'XZ-Y' : Y up 
+)
+
+file_3ds
+(
+	scale			= '1 1 1'
+	pivot			= '0 0 -1'
+	tc_offset		= '0.5 0.5'
+	cw			= '0'
+	axis			= '+XYZ'
+)
+
+file_ply
+(
+	scale			= '1 1 1'
+	pivot			= '0 0 -1'
+	tc_offset		= '0.5 0.5'
+	cw			= '0'
+	axis			= 'XYZ'
+)
