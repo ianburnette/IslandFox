@@ -1,0 +1,37 @@
+********************************************************************************
+*                             Initializing Cubiquity                           *
+********************************************************************************
+[07:55:33, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[07:59:24, Info   ]: Creating empty voxel database as 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/1D6DFB92.vdb'
+[07:59:53, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[07:59:53, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensTerrain.vdb'
+[08:00:03, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[08:00:26, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[08:00:27, Info   ]: Creating empty voxel database as 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2d-simplex-noise-88921198.vdb'
+[08:00:32, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[08:00:49, Info   ]: Creating empty voxel database as 'C:/Users/Andy/AppData/Local/Temp/DefaultCompany/IslandFox/712AA755.vdb'
+[08:01:09, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[08:01:09, Info   ]: Creating empty voxel database as 'C:/Users/Andy/AppData/Local/Temp/DefaultCompany/IslandFox/0C4A3DBE.vdb'
+[08:02:02, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[08:02:05, Info   ]: Creating empty voxel database as 'C:/Users/Andy/AppData/Local/Temp/DefaultCompany/IslandFox/1E7F8DA1.vdb'
+[08:02:35, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[08:02:35, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:02:35, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:02:39, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:02:39, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:03:23, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[08:03:23, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:03:23, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[08:03:23, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Tests/SmallSphere.vdb'
+[08:03:26, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Tests/SmallSphere.vdb'
+[08:04:32, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[08:04:32, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Tests/SmallSphere.vdb'
+[08:04:32, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[08:05:00, Info   ]: Creating empty voxel database as 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/50CCB9B1.vdb'
+[08:05:04, Info   ]: Creating voxel database from 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[08:05:13, Info   ]: Creating empty voxel database as 'E:/Created/IslandFox/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2CC5AF11.vdb'
+[08:08:02, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+********************************************************************************
+*                             Shutting down Cubiquity                          *
+********************************************************************************
+
