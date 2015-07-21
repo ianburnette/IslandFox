@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bd43cf51f80665743930c159694a5355
-timeCreated: 1436638206
+timeCreated: 1437099728
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,12 @@ TextureImporter:
     21300010: AdultFox_5
     21300012: AdultFox_6
     21300014: AdultFox_7
+    21300016: AdultFox_8
+    21300018: AdultFox_9
+    21300020: AdultFox_10
+    21300022: AdultFox_11
+    21300024: AdultFox_12
+    21300026: AdultFox_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -60,80 +66,140 @@ TextureImporter:
     - name: AdultFox_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 142
-        width: 16
-        height: 18
+        x: 4
+        y: 128
+        width: 24
+        height: 24
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 142
-        width: 16
-        height: 18
+        x: 36
+        y: 128
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 142
-        width: 16
-        height: 18
+        x: 68
+        y: 128
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 142
-        width: 16
-        height: 18
+        x: 100
+        y: 128
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 124
-        width: 16
-        height: 18
+        x: 132
+        y: 128
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 106
-        width: 16
-        height: 18
+        x: 4
+        y: 96
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 70
-        width: 16
-        height: 18
+        x: 36
+        y: 96
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_7
       rect:
         serializedVersion: 2
-        x: 80
-        y: 70
-        width: 16
-        height: 18
+        x: 68
+        y: 96
+        width: 24
+        height: 24
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_8
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 96
+        width: 24
+        height: 24
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_9
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 96
+        width: 24
+        height: 27
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 64
+        width: 24
+        height: 24
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_11
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 64
+        width: 24
+        height: 24
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_12
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 64
+        width: 24
+        height: 24
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_13
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 64
+        width: 24
+        height: 24
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -62,12 +62,12 @@ public class Throwing : MonoBehaviour
 	void Update()
 	{
 		//when we press grab button, throw object if we're holding one
-		if (Input.GetButtonDown ("Grab") && heldObj && Time.time > timeOfPickup + 0.1f)
-		{
-			print ("grabbing");
-			if(heldObj.tag == "Pickup") 
-				ThrowPickup();
-		}		
+//		if (Input.GetButtonDown ("Grab") && heldObj && Time.time > timeOfPickup + 0.1f)
+//		{
+//			print ("grabbing");
+//			if(heldObj.tag == "Pickup") 
+//				ThrowPickup();
+//		}		
 		//set animation value for arms layer
 		if(animator)
 			if(heldObj && heldObj.tag == "Pickup")
@@ -84,10 +84,10 @@ public class Throwing : MonoBehaviour
 		if (heldObj && heldObj.tag == "Pushable")
 		{
 			characterMotor.RotateToDirection(heldObj.transform.position, rotateToBlockSpeed, true);
-			if(Input.GetButtonUp ("Grab"))
-			{
-				DropPushable();
-			}
+//			if(Input.GetButtonUp ("Grab"))
+//			{
+//				DropPushable();
+//			}
 			if(!joint)
 			{
 				DropPushable();
@@ -100,15 +100,15 @@ public class Throwing : MonoBehaviour
 	void OnTriggerStay(Collider other)
 	{
 		//if grab is pressed and an object is inside the players "grabBox" trigger
-		if(Input.GetButton("Grab"))
-		{
-			//pickup
-			if(other.tag == "Pickup" && heldObj == null && timeOfThrow + 0.2f < Time.time)
-				LiftPickup(other);
-			//grab
-			if(other.tag == "Pushable" && heldObj == null && timeOfThrow + 0.2f < Time.time)
-				GrabPushable(other);
-		}
+		//if(Input.GetButton("Grab"))
+//		{
+//			//pickup
+//			if(other.tag == "Pickup" && heldObj == null && timeOfThrow + 0.2f < Time.time)
+//				LiftPickup(other);
+//			//grab
+//			if(other.tag == "Pushable" && heldObj == null && timeOfThrow + 0.2f < Time.time)
+//				GrabPushable(other);
+//		}
 	}
 			
 	private void GrabPushable(Collider other)

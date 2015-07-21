@@ -11,10 +11,45 @@ public class cameraFocusControls : MonoBehaviour {
 	public int facingXDirection = 0; //1=w, 2=e
 	public int facingZDirection = 0; //1=n, 2=s
 	public float currentXoffset, currentZoffset, yOffset;
+	public float groundHeight, minHeightDist, waitToChangeTime, changeSpeed;
+	public bool readyToChangeHeight;
+
+	
+
+	public void StandingOn(float height){
+		if (readyToChangeHeight) {
+			if (Mathf.Abs (height) - Mathf.Abs (groundHeight) > minHeightDist || 
+				Mathf.Abs (groundHeight) - Mathf.Abs (height) > minHeightDist) {
+				ChangeHeight (height);
+			}
+		}
+
+	}
+
+	void ChangeHeight(float newHeight){
+		readyToChangeHeight = false;
+		Invoke ("ResetHeightChange", waitToChangeTime);
+		iTween.ValueTo (gameObject, iTween.Hash(
+			"from", groundHeight,
+			"to", newHeight,
+			"time", changeSpeed,
+			"onupdate", "UpdateHeight"
+			));
+	}
+
+	void UpdateHeight(float newHeight){
+		groundHeight = newHeight;
+	}
+
+	void ResetHeightChange(){
+		readyToChangeHeight = true;
+	}
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+		transform.position = new Vector3 (transform.position.x, player.transform.position.y, transform.position.z);
+		groundHeight = player.transform.position.y;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +68,10 @@ public class cameraFocusControls : MonoBehaviour {
 //			rb.velocity = new Vector3(playerRB.velocity.x, rb.velocity.y, rb.velocity.z);
 //		}
 
-		transform.position = player.transform.position + new Vector3 (currentXoffset, yOffset, currentZoffset);
+		transform.position = new Vector3 (player.transform.position.x,
+		                                 groundHeight + yOffset,
+		                                 player.transform.position.z);
+			//player.transform.position + new Vector3 (currentXoffset, yOffset, currentZoffset);
 	}
 
 	void OnDrawGizmos(){

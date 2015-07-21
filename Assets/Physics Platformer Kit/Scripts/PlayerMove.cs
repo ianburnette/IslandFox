@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
 	public bool haveCameraFocus = true;
 	private Vector3 camFocusLocation;
 	public Transform myCamFocus;
+	public cameraFocusControls focusControls;
 
 	//setup
 	public bool sidescroller;					//if true, won't apply vertical input
@@ -286,6 +287,7 @@ public class PlayerMove : MonoBehaviour
 						haveCameraFocus = true;
 						print ("switching back");
 					}
+					focusControls.StandingOn(hit.point.y);
 					//yes our feet are on something
 					return true;
 				}

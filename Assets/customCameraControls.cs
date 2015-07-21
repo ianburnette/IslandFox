@@ -9,7 +9,10 @@ public class customCameraControls : MonoBehaviour {
 	public int cameraPosition; //1=close, 2=med, 3=far
 	public int cameraFocusDirection = 3; //1=n, 2=s, 3=w, 4=e
 	public float posChangeTime;
-	public float currentCamHeight, currentCamDist;
+	public float currentCamHeight, currentCamDist, cameraHeightModifier;
+	public bool inDialogue;
+	private int stateToReturnTo = 2;
+	public float heightModBase = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,25 +23,50 @@ public class customCameraControls : MonoBehaviour {
 	void Update () {
 		AlignWithFocus ();
 		GetCameraInput ();
-		SetCamFocusPosition ();
-
 	}
 
 	void AlignWithFocus(){
-		transform.position = new Vector3(camFocus.position.x, camFocus.position.y + currentCamHeight,camFocus.position.z - currentCamDist);
+		transform.position = new Vector3(camFocus.position.x, camFocus.position.y + currentCamHeight - cameraHeightModifier,camFocus.position.z - currentCamDist);
 	}
 
-	void SetCamFocusPosition(){
+	public void Dialogue(bool state){
+		inDialogue = state;
+		if (state == true) {
+			SetHeightModifier(heightModBase);
+			SetCameraPosition(1);
+		}if (state == false) {
+			SetHeightModifier(0f);
+			SetCameraPosition(stateToReturnTo);
+		}
+	}
 
+	void SetHeightModifier (float newMod){
+		iTween.ValueTo (gameObject, iTween.Hash(
+			"from", cameraHeightModifier,
+			"to", newMod,
+			"time", posChangeTime,
+			"onupdate", "UpdateHeight"
+			));
+	}
+
+	void UpdateHeight(float newHeight){
+		cameraHeightModifier = newHeight;
 	}
 
 	void GetCameraInput(){
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			SetCameraPosition(1);
-		}if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			SetCameraPosition(2);
-		}if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			SetCameraPosition(3);
+		if (!inDialogue) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				SetCameraPosition (1);
+				stateToReturnTo = 1;
+			}
+			if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				SetCameraPosition (2);
+				stateToReturnTo = 3;
+			}
+			if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				SetCameraPosition (3);
+				stateToReturnTo = 3;
+			}
 		}
 
 	}
