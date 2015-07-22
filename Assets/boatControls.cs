@@ -4,7 +4,8 @@ using System.Collections;
 public class boatControls : MonoBehaviour {
 
 	public Animator anim;
-	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity;
+	public Transform hull;
+	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity, turnSpeed;
 	private float baseSpeed;
 	public float h, v;
 	Rigidbody rb;
@@ -59,6 +60,9 @@ public class boatControls : MonoBehaviour {
 	void MoveDirection(){
 		Vector3 moveDir = new Vector3 (h, 0, v);
 		rb.AddForce(new Vector3(moveDir.x * speed, 0f, moveDir.z * speed));
+
+		SetRotation ();
+
 		if (moveDir != Vector3.zero) {
 			if (Mathf.Abs (moveDir.x) > deadZone)
 				anim.SetFloat ("x", moveDir.x);
@@ -66,4 +70,22 @@ public class boatControls : MonoBehaviour {
 				anim.SetFloat ("v", moveDir.z);
 		}
 	}
+
+	void SetRotation(){
+		Vector3 lookVector = new Vector3 (transform.position.x + rb.velocity.x, transform.position.y + 2f, transform.position.z + rb.velocity.z);
+
+
+		//hull.transform.LookAt (lookVector);
+		//hull.transform.rotation = Quaternion.Euler (hull.transform.rotation.eulerAngles.x, hull.transform.rotation.eulerAngles.y, 0);
+
+		var lookPos = lookVector - transform.position;
+		lookPos.y = 0;
+		var rotation = Quaternion.LookRotation(lookPos);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+	}
+
+	void OnDrawGizmos(){
+		Gizmos.DrawSphere (new Vector3(transform.position.x + rb.velocity.x, transform.position.y+2f, transform.position.z+rb.velocity.z), .4f);
+	}
+
 }
