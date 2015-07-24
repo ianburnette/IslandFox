@@ -8,7 +8,7 @@ public class boatControls : MonoBehaviour {
 	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity, turnSpeed;
 	private float baseSpeed;
 	public float h, v;
-	Rigidbody rb;
+	public Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {

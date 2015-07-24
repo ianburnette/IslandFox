@@ -287,7 +287,9 @@ public class PlayerMove : MonoBehaviour
 						haveCameraFocus = true;
 						print ("switching back");
 					}
-					focusControls.StandingOn(hit.point.y);
+					if (hit.transform.tag != "Resetter"){
+						focusControls.StandingOn(hit.point.y);
+					}
 					//yes our feet are on something
 					return true;
 				}
