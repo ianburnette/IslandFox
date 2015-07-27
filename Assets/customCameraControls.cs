@@ -21,7 +21,7 @@ public class customCameraControls : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		AlignWithFocus ();
 		GetCameraInput ();
 	}

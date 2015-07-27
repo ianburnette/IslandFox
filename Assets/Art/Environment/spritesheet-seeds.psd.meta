@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: e4658f2f3d704374fbf692ef07a96517
+timeCreated: 1438030097
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: spritesheet-seeds_0
+    21300002: spritesheet-seeds_1
+    21300004: spritesheet-seeds_2
+    21300006: spritesheet-seeds_3
+    21300008: spritesheet-seeds_4
+    21300010: spritesheet-seeds_5
+    21300012: spritesheet-seeds_6
+    21300014: spritesheet-seeds_7
+    21300016: spritesheet-seeds_8
+    21300018: spritesheet-seeds_9
+    21300020: spritesheet-seeds_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 2.5
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: spritesheet-seeds_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_3
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_4
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 90
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_7
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 88
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 69
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_9
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 69
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_10
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 63
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

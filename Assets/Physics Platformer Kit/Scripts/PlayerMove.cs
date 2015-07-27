@@ -8,20 +8,22 @@ using System.Collections;
 public class PlayerMove : MonoBehaviour 
 {
 	//custom
+	public Transform myCamFocus;
+	public cameraFocusControls focusControls;
+	public Transform mainCam;
 	public float additionalGravityForce;
 	public float jumpStopSpeed;
 	public Animator anim;
 	public cameraChanger camChange;
 	public bool haveCameraFocus = true;
 	private Vector3 camFocusLocation;
-	public Transform myCamFocus;
-	public cameraFocusControls focusControls;
+
 	public PlayerInventory inventory;
 	public Transform standingOnTransform;
 
 	//setup
 	public bool sidescroller;					//if true, won't apply vertical input
-	public Transform mainCam, floorChecks;		//main camera, and floorChecks object. FloorChecks are raycasted down from to check the player is grounded.
+	public Transform floorChecks;		//main camera, and floorChecks object. FloorChecks are raycasted down from to check the player is grounded.
 	public Animator animator;					//object with animation controller on, which you want to animate
 	public AudioClip jumpSound;					//play when jumping
 	public AudioClip landSound;					//play when landing on ground
@@ -98,6 +100,7 @@ public class PlayerMove : MonoBehaviour
 	
 	//get state of player, values and input
 	void Update()
+	//void UpdateReplacement()
 	{	
 		//handle jumping
 		JumpCalculations ();
@@ -217,6 +220,7 @@ public class PlayerMove : MonoBehaviour
 	//apply correct player movement (fixedUpdate for physics calculations)
 	void FixedUpdate() 
 	{
+		//UpdateReplacement ();
 		//are we grounded
 		grounded = IsGrounded ();
 		//move, rotate, manage speed

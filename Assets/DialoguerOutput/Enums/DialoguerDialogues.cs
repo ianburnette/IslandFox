@@ -4,4 +4,5 @@ public enum DialoguerDialogues{
 	Raccoon1 = 0,
 	My_Second_Dialogue = 2,
 	Temp = 3,
+	MomDialogue = 4,
 }

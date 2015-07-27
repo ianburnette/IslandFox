@@ -4,24 +4,36 @@ using System.Collections;
 
 public class NPCDialogueScript : MonoBehaviour {
 
+	public GameObject gm;
+	public Transform player;
+
 	public GameObject dialoguePanels;
 
-	public Transform player;
+
 
 	public Text dialoguePanelContents, dialogueSpeakerName;
 
-	public string dialogueName;
+	public int dialogueIndex;
 
 	public bool readyToStart;
 	public GameObject buttonPrompt;	
 
 	private bool _showing;
 	private string _text;
-	
+
 	void Start(){
+		gm = GameObject.Find ("gm");
+		player = GameObject.Find ("Player").transform;
+		Setup ();
 		Dialoguer.events.onStarted += onStarted;
 		Dialoguer.events.onEnded += onEnded;
 		Dialoguer.events.onTextPhase += onTextPhase;
+	}
+	
+	void Setup(){
+		dialoguePanels = gm.transform.GetChild (2).GetChild (0).gameObject;
+		dialoguePanelContents = dialoguePanels.transform.GetChild (1).GetChild (0).GetComponent<Text> ();
+		dialogueSpeakerName = dialoguePanels.transform.GetChild (0).GetChild (0).GetComponent<Text> ();
 	}
 
 	void onStarted () {
@@ -59,7 +71,7 @@ public class NPCDialogueScript : MonoBehaviour {
 
 		if (readyToStart && Input.GetButtonDown ("X")) {
 			buttonPrompt.SetActive(false);
-			Dialoguer.StartDialogue(0, DialoguerCallback);
+			Dialoguer.StartDialogue(dialogueIndex, DialoguerCallback);
 		}
 
 		if (_showing && Input.GetButtonDown ("A")) {
