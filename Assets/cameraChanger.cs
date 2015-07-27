@@ -20,7 +20,7 @@ public class cameraChanger : MonoBehaviour {
 	}
 
 	public void Change(Vector3 target, bool isPlayerFocused){
-		print ("changing");
+		//print ("changing");
 		camFocus.position = target;
 		if (isPlayerFocused) {
 			focusScript.enabled = true;

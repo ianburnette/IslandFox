@@ -57,12 +57,12 @@ public class NPCDialogueScript : MonoBehaviour {
 			buttonPrompt.SetActive(false);// = false;
 		}
 
-		if (readyToStart && Input.GetButtonDown ("Fire1")) {
+		if (readyToStart && Input.GetButtonDown ("X")) {
 			buttonPrompt.SetActive(false);
 			Dialoguer.StartDialogue(0, DialoguerCallback);
 		}
 
-		if (_showing && Input.GetButtonDown ("Fire2")) {
+		if (_showing && Input.GetButtonDown ("A")) {
 			Dialoguer.ContinueDialogue();
 		}
 	}

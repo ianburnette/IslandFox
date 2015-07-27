@@ -77,6 +77,8 @@ public class Coin : MonoBehaviour
 	{
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
+		player.SendMessage ("GetSeed");
+		print ("set");
 		if (gui)
 			gui.coinsCollected ++;
 		Destroy(gameObject);

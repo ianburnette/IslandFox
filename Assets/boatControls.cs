@@ -4,17 +4,19 @@ using System.Collections;
 public class boatControls : MonoBehaviour {
 
 	public Animator anim;
-	public Transform hull;
+	public Transform hull, sprite;
 	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity, turnSpeed;
 	private float baseSpeed;
 	public float h, v;
 	public Rigidbody rb;
+	public Transform spriteLocation;
 
 	// Use this for initialization
 	void Start () {
 		baseSpeed = speed;
 		rb = GetComponent<Rigidbody> ();
-		anim = GetComponent<Animator> ();
+		sprite.parent = null;
+		//anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,13 @@ public class boatControls : MonoBehaviour {
 		GetInput ();
 		GetStroke ();
 		MoveDirection ();
+		UpdateAnimator ();
 		LimitSpeed ();
+	}
+
+	void UpdateAnimator(){
+		anim.SetFloat("yRotation", transform.rotation.eulerAngles.y);
+		sprite.position = spriteLocation.position;
 	}
 
 	public void OnCloud (bool on){
@@ -72,14 +80,15 @@ public class boatControls : MonoBehaviour {
 	}
 
 	void SetRotation(){
-		Vector3 lookVector = new Vector3 (transform.position.x + rb.velocity.x, transform.position.y + 2f, transform.position.z + rb.velocity.z);
+		Vector3 lookVector = new Vector3 (transform.position.x + rb.velocity.x, transform.position.y + 2000f, transform.position.z + rb.velocity.z);
 
 
 		//hull.transform.LookAt (lookVector);
 		//hull.transform.rotation = Quaternion.Euler (hull.transform.rotation.eulerAngles.x, hull.transform.rotation.eulerAngles.y, 0);
 
 		var lookPos = lookVector - transform.position;
-		lookPos.y = 0;
+		//lookPos.z = 0;
+
 		var rotation = Quaternion.LookRotation(lookPos);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
 	}

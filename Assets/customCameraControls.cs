@@ -16,7 +16,8 @@ public class customCameraControls : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SetCameraPosition (1);
+		SetCameraPosition (3);
+		stateToReturnTo = 3;
 	}
 	
 	// Update is called once per frame
@@ -55,18 +56,34 @@ public class customCameraControls : MonoBehaviour {
 
 	void GetCameraInput(){
 		if (!inDialogue) {
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-				SetCameraPosition (1);
-				stateToReturnTo = 1;
+			if (Input.GetButtonDown("CamIn")){
+				if (stateToReturnTo == 1){
+					stateToReturnTo = 3;
+				}else{
+					stateToReturnTo--;
+				}
+				SetCameraPosition(stateToReturnTo);
+			}if (Input.GetButtonDown("CamOut")){
+				if (stateToReturnTo == 3){
+					stateToReturnTo = 1;
+				}else{
+					stateToReturnTo++;
+				}
+				SetCameraPosition(stateToReturnTo);
 			}
-			if (Input.GetKeyDown (KeyCode.Alpha2)) {
-				SetCameraPosition (2);
-				stateToReturnTo = 3;
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha3)) {
-				SetCameraPosition (3);
-				stateToReturnTo = 3;
-			}
+
+//			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+//				SetCameraPosition (1);
+//				stateToReturnTo = 1;
+//			}
+//			if (Input.GetKeyDown (KeyCode.Alpha2)) {
+//				SetCameraPosition (2);
+//				stateToReturnTo = 3;
+//			}
+//			if (Input.GetKeyDown (KeyCode.Alpha3)) {
+//				SetCameraPosition (3);
+//				stateToReturnTo = 3;
+//			}
 		}
 
 	}

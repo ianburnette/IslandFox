@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
 	void Update()
 	{
 		if (sightTrigger && sightTrigger.colliding && chase)
-		characterMotor.MoveTo (sightTrigger.hitObject.transform.position, acceleration, chaseStopDistance, ignoreY);	
+//		characterMotor.MoveTo (sightTrigger.hitObject.transform.position, acceleration, chaseStopDistance, ignoreY);	
 		
 		if (attackTrigger && attackTrigger.collided)
 			dealDamage.Attack(attackTrigger.hitObject, attackDmg, pushHeight, pushForce);
@@ -69,8 +69,8 @@ public class EnemyAI : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		characterMotor.ManageSpeed(deceleration, speedLimit, ignoreY);
-		characterMotor.RotateToVelocity (rotateSpeed, ignoreY);
+		//characterMotor.ManageSpeed(deceleration, speedLimit, ignoreY);
+	//	characterMotor.RotateToVelocity (rotateSpeed, ignoreY);
 	}
 	
 	//bounce player when they land on this enemy

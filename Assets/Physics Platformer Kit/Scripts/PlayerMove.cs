@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour
 	private Vector3 camFocusLocation;
 	public Transform myCamFocus;
 	public cameraFocusControls focusControls;
+	public PlayerInventory inventory;
+	public Transform standingOnTransform;
 
 	//setup
 	public bool sidescroller;					//if true, won't apply vertical input
@@ -51,7 +53,7 @@ public class PlayerMove : MonoBehaviour
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
 	private Vector3 direction, moveDirection, screenMovementForward, screenMovementRight, movingObjSpeed;
 	
-	private CharacterMotor characterMotor;
+	private CharacterMotor2 characterMotor;
 	private EnemyAI enemyAI;
 	private DealDamage dealDamage;
 
@@ -60,6 +62,7 @@ public class PlayerMove : MonoBehaviour
 	void Awake()
 	{
 		camFocusLocation = myCamFocus.position;
+		inventory = GetComponent<PlayerInventory> ();
 		camChange = GetComponent<cameraChanger> ();
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
@@ -85,7 +88,7 @@ public class PlayerMove : MonoBehaviour
 		//usual setup
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
 		dealDamage = GetComponent<DealDamage>();
-		characterMotor = GetComponent<CharacterMotor>();
+		characterMotor = GetComponent<CharacterMotor2>();
 		//gets child objects of floorcheckers, and puts them in an array
 		//later these are used to raycast downward and see if we are on the ground
 		floorCheckers = new Transform[floorChecks.childCount];
@@ -98,6 +101,7 @@ public class PlayerMove : MonoBehaviour
 	{	
 		//handle jumping
 		JumpCalculations ();
+		CheckStandingTransform ();
 		//adjust movement values if we're in the air or on the ground
 		curAccel = (grounded) ? accel : airAccel;
 		curDecel = (grounded) ? decel : airDecel;
@@ -120,6 +124,18 @@ public class PlayerMove : MonoBehaviour
 		Animate (moveDirection, h, v);
 	}
 
+	void CheckStandingTransform(){
+		if (grounded){
+			if (standingOnTransform.tag == "Ground"){
+				inventory.canPlace = true;
+			}else{
+				inventory.canPlace = false;
+			}
+		}else{
+			inventory.canPlace = false;
+		}
+	}
+	
 	void Animate(Vector3 moveDir, float h, float v){
 		anim.SetBool ("grounded", grounded);
 		anim.SetFloat ("xDir", h);
@@ -290,6 +306,9 @@ public class PlayerMove : MonoBehaviour
 					if (hit.transform.tag != "Resetter"){
 						focusControls.StandingOn(hit.point.y);
 					}
+					if (standingOnTransform != hit.transform){
+						standingOnTransform = hit.transform;
+					}
 					//yes our feet are on something
 					return true;
 				}
@@ -315,7 +334,7 @@ public class PlayerMove : MonoBehaviour
 			GetComponent<AudioSource>().Play ();
 		}
 		//if we press jump in the air, save the time
-		if (Input.GetButtonDown ("Jump") && !grounded) {
+		if (Input.GetButtonDown ("A") && !grounded) {
 			airPressTime = Time.time;
 		}
 
@@ -323,7 +342,7 @@ public class PlayerMove : MonoBehaviour
 			rb.AddForce(Vector3.down * additionalGravityForce);
 		}
 
-		if (Input.GetButtonUp ("Jump") && !grounded && vel.y > 1f) {
+		if (Input.GetButtonUp ("A") && !grounded && vel.y > 1f) {
 			GetComponent<Rigidbody>().velocity = new Vector3(vel.x, jumpStopSpeed, vel.z);
 		}
 		
@@ -331,7 +350,7 @@ public class PlayerMove : MonoBehaviour
 		if (grounded && slope < slopeLimit)
 		{
 			//and we press jump, or we pressed jump justt before hitting the ground
-			if (Input.GetButtonDown ("Jump") || airPressTime + jumpLeniancy > Time.time)
+			if (Input.GetButtonDown ("A") || airPressTime + jumpLeniancy > Time.time)
 			{	
 				//increment our jump type if we haven't been on the ground for long
 				onJump = (groundedCount < jumpDelay) ? Mathf.Min(2, onJump + 1) : 0;

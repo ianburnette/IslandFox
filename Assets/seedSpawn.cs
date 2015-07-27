@@ -44,6 +44,10 @@ public class seedSpawn : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		if (col.transform.tag == "Player") {
+			foreach(Transform child in transform){
+				child.parent = null;
+			}
+			Reenable();
 			Destroy(gameObject);
 		}
 	}

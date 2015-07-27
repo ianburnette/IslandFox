@@ -31,7 +31,7 @@ public class Throwing : MonoBehaviour
 	
 	
 	private PlayerMove playerMove;
-	private CharacterMotor characterMotor;
+	private CharacterMotor2 characterMotor;
 	private TriggerParent triggerParent;
 	private RigidbodyInterpolation objectDefInterpolation;
 	
@@ -51,7 +51,7 @@ public class Throwing : MonoBehaviour
 		}
 		
 		playerMove = GetComponent<PlayerMove>();
-		characterMotor = GetComponent<CharacterMotor>();
+		characterMotor = GetComponent<CharacterMotor2>();
 		defRotateSpeed = playerMove.rotateSpeed;
 		//set arms animation layer to animate with 1 weight (full override)
 		if(animator)

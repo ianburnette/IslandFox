@@ -5,6 +5,7 @@ public class boatCollider : MonoBehaviour {
 
 	bool inBoat = false;
 	public Transform player;
+	public Transform spriteLocation;
 	public float pushHeight;
 	boatControls controls;
 	public GameObject inBoatSprite;
@@ -16,7 +17,7 @@ public class boatCollider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Jump") && inBoat) {
+		if (Input.GetButtonDown ("A") && inBoat) {
 			EnablePlayer ();
 		}
 	}
@@ -33,12 +34,14 @@ public class boatCollider : MonoBehaviour {
 	void EnablePlayer(){
 		GetComponent<SphereCollider> ().enabled = false;
 		inBoat = false;
-		player.position = transform.position;
+		player.position = spriteLocation.position;
 		player.transform.parent = null;
 		player.gameObject.SetActive (true);
 		player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+		player.rotation = Quaternion.Euler (new Vector3(0,180,0));
+
 		GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-		//player.GetComponent<Rigidbody>().AddForce (Vector3.up * pushHeight, ForceMode.VelocityChange);
+		player.GetComponent<Rigidbody>().AddForce (Vector3.up * pushHeight, ForceMode.VelocityChange);
 		Invoke ("EnableTrigger", 1f);
 		controls.enabled = false;
 		inBoatSprite.SetActive(false);
