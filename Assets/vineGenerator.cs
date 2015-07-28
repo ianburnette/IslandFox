@@ -12,6 +12,7 @@ public class vineGenerator : MonoBehaviour {
 	public Transform straight, straightEnd, corner;
 	public Transform latestChunk, UIprompt;
 	public float vertMargin = 2f;
+	public float vertGrowDist = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +44,7 @@ public class vineGenerator : MonoBehaviour {
 			CreateNew(Vector3.forward * 2f);
 		}else if (player.position.z < mostRecent.z - differenceMargin) {
 			CreateNew(Vector3.back * 2f);
-		}else if (player.position.y > mostRecent.y + differenceMargin * 2.5f) {
+		}else if (player.position.y > mostRecent.y + differenceMargin * vertGrowDist) {
 			CreateNew(Vector3.up * 2f);
 		}
 	}

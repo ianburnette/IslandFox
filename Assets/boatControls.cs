@@ -10,6 +10,7 @@ public class boatControls : MonoBehaviour {
 	public float h, v;
 	public Rigidbody rb;
 	public Transform spriteLocation;
+	public float targetHeight, heightCorrectSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +21,22 @@ public class boatControls : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		GetInput ();
 		GetStroke ();
+		TargetHeight ();
 		MoveDirection ();
 		UpdateAnimator ();
 		LimitSpeed ();
+	}
+
+	void TargetHeight(){
+		float dif = transform.position.y - targetHeight;
+		if (dif < 0) {
+			rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+		} else {
+			rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+		}
 	}
 
 	void UpdateAnimator(){
