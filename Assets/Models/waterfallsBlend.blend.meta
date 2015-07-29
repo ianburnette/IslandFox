@@ -36,6 +36,16 @@ ModelImporter:
     100056: Island_4_MeshPart0
     100058: Island_4_MeshPart1
     100060: Island_4_MeshPart2
+    100062: island10Grass
+    100064: island11Grass
+    100066: island2grass
+    100068: island3Grass
+    100070: Island4Grass
+    100072: island5Grass
+    100074: island6Moss
+    100076: ISLAND7GRASS
+    100078: island8Grass
+    100080: island9Grass
     400000: Waterfalls_MeshPart0
     400002: Waterfalls_MeshPart1
     400004: //RootNode
@@ -67,6 +77,16 @@ ModelImporter:
     400056: Island_4_MeshPart0
     400058: Island_4_MeshPart1
     400060: Island_4_MeshPart2
+    400062: island10Grass
+    400064: island11Grass
+    400066: island2grass
+    400068: island3Grass
+    400070: Island4Grass
+    400072: island5Grass
+    400074: island6Moss
+    400076: ISLAND7GRASS
+    400078: island8Grass
+    400080: island9Grass
     2300000: Waterfalls_MeshPart0
     2300002: Waterfalls_MeshPart1
     2300004: Island1
@@ -97,6 +117,16 @@ ModelImporter:
     2300054: Island_4_MeshPart0
     2300056: Island_4_MeshPart1
     2300058: Island_4_MeshPart2
+    2300060: island10Grass
+    2300062: island11Grass
+    2300064: island2grass
+    2300066: island3Grass
+    2300068: Island4Grass
+    2300070: island5Grass
+    2300072: island6Moss
+    2300074: ISLAND7GRASS
+    2300076: island8Grass
+    2300078: island9Grass
     3300000: Waterfalls_MeshPart0
     3300002: Waterfalls_MeshPart1
     3300004: Island1
@@ -127,6 +157,16 @@ ModelImporter:
     3300054: Island_4_MeshPart0
     3300056: Island_4_MeshPart1
     3300058: Island_4_MeshPart2
+    3300060: island10Grass
+    3300062: island11Grass
+    3300064: island2grass
+    3300066: island3Grass
+    3300068: Island4Grass
+    3300070: island5Grass
+    3300072: island6Moss
+    3300074: ISLAND7GRASS
+    3300076: island8Grass
+    3300078: island9Grass
     4300000: Waterfalls_MeshPart0
     4300002: Waterfalls_MeshPart1
     4300004: Island10
@@ -157,6 +197,16 @@ ModelImporter:
     4300054: Island_4_MeshPart0
     4300056: Island_4_MeshPart1
     4300058: Island_4_MeshPart2
+    4300060: island3Grass
+    4300062: island10Grass
+    4300064: island9Grass
+    4300066: island8Grass
+    4300068: ISLAND7GRASS
+    4300070: island6Moss
+    4300072: island5Grass
+    4300074: island2grass
+    4300076: Island4Grass
+    4300078: island11Grass
     6400000: Island1
     6400002: Island10
     6400004: Island11
@@ -183,6 +233,17 @@ ModelImporter:
     6400046: water7
     6400048: water8
     6400050: water9
+    6400052: island10Grass
+    6400054: island11Grass
+    6400056: island2grass
+    6400058: island3Grass
+    6400060: Island4Grass
+    6400062: island5Grass
+    6400064: Island6
+    6400066: island6Moss
+    6400068: ISLAND7GRASS
+    6400070: island8Grass
+    6400072: island9Grass
     7400000: Default Take
     9500000: //RootNode
   materials:
