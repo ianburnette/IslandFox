@@ -14,6 +14,19 @@ ModelImporter:
     100012: Grandparents_MeshPart4
     100014: //RootNode
     100016: walkway
+    100018: branch1
+    100020: branch2
+    100022: branches3
+    100024: extraneous
+    100026: ROOT1
+    100028: root2
+    100030: root3
+    100032: root4
+    100034: upperTrunk
+    100036: walkway1
+    100038: walkway2
+    100040: walkway3
+    100042: walkway4
     400000: Cube
     400002: Grandparents
     400004: Grandparents_MeshPart0
@@ -23,6 +36,19 @@ ModelImporter:
     400012: Grandparents_MeshPart4
     400014: //RootNode
     400016: walkway
+    400018: branch1
+    400020: branch2
+    400022: branches3
+    400024: extraneous
+    400026: ROOT1
+    400028: root2
+    400030: root3
+    400032: root4
+    400034: upperTrunk
+    400036: walkway1
+    400038: walkway2
+    400040: walkway3
+    400042: walkway4
     2300000: Cube
     2300002: Grandparents_MeshPart0
     2300004: Grandparents_MeshPart1
@@ -30,6 +56,19 @@ ModelImporter:
     2300008: Grandparents_MeshPart3
     2300010: Grandparents_MeshPart4
     2300012: walkway
+    2300014: branch1
+    2300016: branch2
+    2300018: branches3
+    2300020: extraneous
+    2300022: ROOT1
+    2300024: root2
+    2300026: root3
+    2300028: root4
+    2300030: upperTrunk
+    2300032: walkway1
+    2300034: walkway2
+    2300036: walkway3
+    2300038: walkway4
     3300000: Cube
     3300002: Grandparents_MeshPart0
     3300004: Grandparents_MeshPart1
@@ -37,6 +76,19 @@ ModelImporter:
     3300008: Grandparents_MeshPart3
     3300010: Grandparents_MeshPart4
     3300012: walkway
+    3300014: branch1
+    3300016: branch2
+    3300018: branches3
+    3300020: extraneous
+    3300022: ROOT1
+    3300024: root2
+    3300026: root3
+    3300028: root4
+    3300030: upperTrunk
+    3300032: walkway1
+    3300034: walkway2
+    3300036: walkway3
+    3300038: walkway4
     4300000: walkway
     4300002: Grandparents_MeshPart0
     4300004: Grandparents_MeshPart1
@@ -44,6 +96,19 @@ ModelImporter:
     4300008: Grandparents_MeshPart3
     4300010: Grandparents_MeshPart4
     4300012: Cube
+    4300014: extraneous
+    4300016: walkway3
+    4300018: walkway2
+    4300020: walkway1
+    4300022: root4
+    4300024: root3
+    4300026: root2
+    4300028: ROOT1
+    4300030: upperTrunk
+    4300032: branch2
+    4300034: branch1
+    4300036: branches3
+    4300038: walkway4
     7400000: Default Take
     9500000: //RootNode
   materials:

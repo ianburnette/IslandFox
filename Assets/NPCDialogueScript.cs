@@ -4,16 +4,20 @@ using System.Collections;
 
 public class NPCDialogueScript : MonoBehaviour {
 
+	public int dialogueProgression = 0;
+	public bool mom;
+
 	public GameObject gm;
 	public Transform player;
 
 	public GameObject dialoguePanels;
 
+	public GameObject boat;
 
 
 	public Text dialoguePanelContents, dialogueSpeakerName;
 
-	public int dialogueIndex;
+	public int[] dialogueIndex;
 
 	public bool readyToStart;
 	public GameObject buttonPrompt;	
@@ -48,6 +52,15 @@ public class NPCDialogueScript : MonoBehaviour {
 		ShowPanels (false);
 		FreezePlayer (false);
 		Camera.main.GetComponent<customCameraControls> ().Dialogue (false);
+		if (dialogueProgression == 0) {
+			dialogueProgression ++;
+		} else if (dialogueProgression == 2 && mom) {
+			SpawnBoat();
+		}
+	}
+
+	void SpawnBoat(){
+		boat.SetActive (true);
 	}
 	
 	void onTextPhase(DialoguerTextData data){
@@ -71,7 +84,7 @@ public class NPCDialogueScript : MonoBehaviour {
 
 		if (readyToStart && Input.GetButtonDown ("X")) {
 			buttonPrompt.SetActive(false);
-			Dialoguer.StartDialogue(dialogueIndex, DialoguerCallback);
+			Dialoguer.StartDialogue(dialogueIndex[dialogueProgression], DialoguerCallback);
 		}
 
 		if (_showing && Input.GetButtonDown ("A")) {

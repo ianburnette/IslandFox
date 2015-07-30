@@ -5,12 +5,12 @@ public class boatControls : MonoBehaviour {
 
 	public Animator anim;
 	public Transform hull, sprite;
-	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity, turnSpeed;
+	public float speed, strokeForce, deadZone, maxVelocity, launchVelocity, turnSpeed, maxDifference;
 	private float baseSpeed;
 	public float h, v;
 	public Rigidbody rb;
 	public Transform spriteLocation;
-	public float targetHeight, heightCorrectSpeed;
+	public float targetHeight, heightCorrectSpeed, targetTargetHeight, bobTime;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,14 @@ public class boatControls : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		sprite.parent = null;
 		//anim = GetComponent<Animator> ();
+	}
+
+	void OnEnable(){
+		InvokeRepeating ("Bob", bobTime, bobTime);
+	}
+
+	void Bob(){
+		rb.AddForce (Vector3.up * strokeForce/3);
 	}
 	
 	// Update is called once per frame
@@ -33,9 +41,23 @@ public class boatControls : MonoBehaviour {
 	void TargetHeight(){
 		float dif = transform.position.y - targetHeight;
 		if (dif < 0) {
-			rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+			//if (dif > -maxDifference){
+				rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+		//	}else{
+			//	rb.AddForce (Vector3.up * -maxDifference * heightCorrectSpeed);
+			//}
 		} else {
-			rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+		//	if (dif < maxDifference){
+				rb.AddForce (Vector3.up * -dif * heightCorrectSpeed);
+			//}else{
+			//	rb.AddForce (Vector3.up * -maxDifference * heightCorrectSpeed);
+			//}
+		}
+
+		if (targetHeight > targetTargetHeight) {
+			if (transform.position.y < targetHeight){
+				targetHeight = transform.position.y;
+			}
 		}
 	}
 

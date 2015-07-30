@@ -5,4 +5,6 @@ public enum DialoguerDialogues{
 	My_Second_Dialogue = 2,
 	Temp = 3,
 	MomDialogue = 4,
+	Mom2 = 5,
+	Mom3 = 6,
 }

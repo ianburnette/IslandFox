@@ -9,22 +9,28 @@ ModelImporter:
     100002: //RootNode
     100004: Plane
     100006: homeColliders
+    100008: Plane_001
     400000: HomeInterior
     400002: //RootNode
     400004: Plane
     400006: homeColliders
+    400008: Plane_001
     2300000: HomeInterior
     2300002: Plane
     2300004: homeColliders
+    2300006: Plane_001
     3300000: HomeInterior
     3300002: Plane
     3300004: homeColliders
+    3300006: Plane_001
     4300000: Plane
     4300002: HomeInterior
     4300004: homeColliders
+    4300006: Plane_001
     6400000: HomeInterior
     6400002: Plane
     6400004: homeColliders
+    6400006: Plane_001
     7400000: Default Take
     9500000: //RootNode
   materials:

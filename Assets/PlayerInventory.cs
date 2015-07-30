@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PlayerInventory : MonoBehaviour {
 
+	public bool haveBoatSeed, haveIslandSeed, haveHouseSeed;
+
 	public Transform currentVineUI, currentVine;
 	public vineGenerator vineGen;
 	public Slider vineRemainingSlider;
@@ -105,10 +107,22 @@ public class PlayerInventory : MonoBehaviour {
 		return calculatedPos;
 	}
 
-	public void GetSeed(){
-		print ("get");
+	public void GetVineSeed(){
 		vineSeedQuant ++;
 	}
 
+	public void GetSeedSmall(int type){
+print ("figure out small seed inventory!");
+	}
+
+	public void GetBoatSeed(){
+		print ("getting boat seed");
+		haveBoatSeed = true;
+		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 2;
+	}public void GetIslandSeed(){
+		haveIslandSeed = true;
+	}public void GetHouseSeed(){
+		haveHouseSeed = true;
+	}
 
 }

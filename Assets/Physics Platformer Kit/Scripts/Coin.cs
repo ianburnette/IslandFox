@@ -4,6 +4,16 @@
 [RequireComponent(typeof(SphereCollider))]
 public class Coin : MonoBehaviour 
 {
+
+	public int seedType;
+
+	//1 = random generic
+	//2 = vine seed
+	//3 = boat seed
+	//4 = island seed
+	//5 = house seed
+
+
 	public GUIManager gui;									//GUIManager script to update with "coins collected"
 	public AudioClip collectSound;							//sound to play when coin is collected
 	public Vector3 rotation = new Vector3(0, 80, 0);		//idle rotation of coin
@@ -75,9 +85,22 @@ public class Coin : MonoBehaviour
 	
 	void CoinGet()
 	{
+		print ("getting type " + seedType);
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
-		player.SendMessage ("GetSeed");
+		if (seedType == 0) {
+			player.GetComponent<PlayerInventory>().GetSeedSmall(0);
+			print ("setup small seed associations");
+		} else if (seedType == 1) {
+			player.SendMessage ("GetVineSeed");
+		}else if (seedType == 2) {
+			player.SendMessage ("GetBoatSeed");
+		}else if (seedType == 3) {
+			player.SendMessage ("GetIslandSeed");
+		}else if (seedType == 4) {
+			player.SendMessage ("GetHouseSeed");
+		}
+
 		print ("set");
 		if (gui)
 			gui.coinsCollected ++;

@@ -45,6 +45,7 @@ public class levelManager : MonoBehaviour {
 		if (changeLevel && fadeImage.color.a >= targetAlpha) {
 			loadingText.SetActive(true);
 			changeLevel = false;
+			GameObject.Find ("persistentGM").GetComponent<persistentGMScript>().comingFrom = Application.loadedLevel;
 			Application.LoadLevel(levelToLoad);
 		}
 	}

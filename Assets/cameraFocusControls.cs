@@ -5,6 +5,7 @@ public class cameraFocusControls : MonoBehaviour {
 
 	public Transform player;
 	public Rigidbody playerRB, rb;
+	public Transform boat;
 	public float horizontalMargin;
 	public float horizontalOffset;
 	public float grossXvel, grossZvel;
@@ -14,7 +15,6 @@ public class cameraFocusControls : MonoBehaviour {
 	public float groundHeight, minHeightDist, waitToChangeTime, changeSpeed;
 	public bool readyToChangeHeight;
 
-	
 
 	public void StandingOn(float height){
 		if (readyToChangeHeight) {
@@ -50,10 +50,14 @@ public class cameraFocusControls : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		transform.position = new Vector3 (transform.position.x, player.transform.position.y, transform.position.z);
 		groundHeight = player.transform.position.y;
+	//	boat = GameObject.Find ("boat").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (player.gameObject.activeSelf == false) {
+			groundHeight = boat.position.y;
+		}
 //		grossXvel += playerRB.velocity.x;
 //		grossZvel += playerRB.velocity.z;
 //		if (grossXvel > horizontalMargin) {

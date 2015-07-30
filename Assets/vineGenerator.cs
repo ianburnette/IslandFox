@@ -3,16 +3,17 @@ using System.Collections;
 
 public class vineGenerator : MonoBehaviour {
 
-	public Transform vineSection;
+	public Transform vineSection, anchorFlower;
 	public int sections;
 	public Transform player;
 	public bool generating;
-	public float differenceMargin;
+	public float differenceMargin, anchorOffset;
 	public Vector3 mostRecent, lastDiff, currentDiff;
 	public Transform straight, straightEnd, corner;
 	public Transform latestChunk, UIprompt;
 	public float vertMargin = 2f;
 	public float vertGrowDist = 3f;
+	bool spawnedAnchor;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,16 @@ public class vineGenerator : MonoBehaviour {
 		if (generating && sections > 0) {
 			Generate();
 		}
+		if (sections <= 0 && !spawnedAnchor) {
+			SpawnAnchor();
+			spawnedAnchor = true;
+		}
 		//CheckIfBelow ();
+	}
+
+	void SpawnAnchor(){
+		Transform anchorFlowerInstance = (Transform)Instantiate (anchorFlower, transform.position + (Vector3.up * anchorOffset), Quaternion.identity);
+		anchorFlowerInstance.parent = transform;
 	}
 
 	public bool CheckIfBelow(){

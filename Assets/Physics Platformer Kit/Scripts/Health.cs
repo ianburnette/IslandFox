@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class Health : MonoBehaviour 
 {
+	public bool anchor;
 	public AudioClip impactSound;					//play when object imacts with something else
 	public AudioClip hurtSound;						//play when this object recieves damage
 	public AudioClip deadSound;						//play when this object dies
@@ -87,6 +88,9 @@ public class Health : MonoBehaviour
 	//respawn object, or destroy it and create the SpawnOnDeath objects
 	void Death()
 	{
+		if (anchor) {
+			GetComponent<AnchorFlowerScript>().Detach();
+		}
 		//player drop item
 		if(tag == "Player")
 			throwing = GetComponent<Throwing>();
@@ -111,6 +115,7 @@ public class Health : MonoBehaviour
 		if (spawnOnDeath.Length != 0)
 			foreach(GameObject obj in spawnOnDeath)
 				Instantiate(obj, transform.position, Quaternion.Euler(Vector3.zero));
+
 	}
 	
 	//calculate impact damage on collision
