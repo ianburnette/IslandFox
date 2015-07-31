@@ -4,7 +4,8 @@ using System.Collections;
 public class persistentGMScript : MonoBehaviour {
 
 	public int comingFrom;
-	public Transform player;
+	public Transform player, boat;
+	public Vector3 boatOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -22,30 +23,34 @@ public class persistentGMScript : MonoBehaviour {
 			if (comingFrom == 1) {
 				FindPlayer ();
 				player.transform.position = GameObject.Find ("spawnLocation0").transform.position;
-			} else if (comingFrom == 2) {
+			} else if (comingFrom == 3) {
 				FindBoat ();
-				player.transform.position = GameObject.Find ("spawnLocation1").transform.position;
-			}
+				boat.transform.position = GameObject.Find ("spawnLocation1").transform.position;
+				player.transform.position = boat.transform.position + boatOffset;
+			} 
 		} else if (levelToSet == 1) {
 			FindPlayer ();
 			player.transform.position = GameObject.Find ("spawnLocation0").transform.position;
 		} else if (levelToSet == 2) {
 			if (comingFrom == 2) {
 				FindBoat ();
-				player.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+				boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+				player.transform.position = boat.transform.position + boatOffset;
 			} else if (comingFrom == 3) {
 				FindBoat ();
-				player.transform.position = GameObject.Find ("spawnLocation1").transform.position;
+				boat.transform.position = GameObject.Find ("spawnLocation1").transform.position;
+				player.transform.position = boat.transform.position + boatOffset;
 			}
 		}else if (levelToSet == 3) {
 			FindBoat ();
-			player.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+			boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+			player.transform.position = boat.transform.position + boatOffset;
 		}
 
 	}
 
 	void FindBoat(){
-		player = GameObject.Find ("boat").transform;
+		boat = GameObject.Find ("boat").transform;
 	}
 
 	void FindPlayer(){

@@ -21,7 +21,12 @@ public class boatControls : MonoBehaviour {
 	}
 
 	void OnEnable(){
+		rb.isKinematic = false;
 		InvokeRepeating ("Bob", bobTime, bobTime);
+	}
+
+	void OnDisable(){
+		rb.isKinematic = true;
 	}
 
 	void Bob(){
