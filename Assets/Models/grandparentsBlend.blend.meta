@@ -204,6 +204,37 @@ ModelImporter:
     4300072: branch1leaves
     4300074: branches3Leaves
     4300076: walkway4Grass
+    6400000: branch1
+    6400002: branch1leaves
+    6400004: branch2
+    6400006: branch2leaves
+    6400008: branches3
+    6400010: branches3Leaves
+    6400012: path
+    6400014: pathBack
+    6400016: pathBackTop
+    6400018: pathTop
+    6400020: ROOT1
+    6400022: root2
+    6400024: root2path
+    6400026: root2pathGrass
+    6400028: root3
+    6400030: root3Path
+    6400032: root3PathGrass
+    6400034: root4
+    6400036: root4Path
+    6400038: root4Pathgrass
+    6400040: upperPath
+    6400042: upperPathTop
+    6400044: upperTrunk
+    6400046: walkway1
+    6400048: walkway1Grass
+    6400050: walkway2
+    6400052: walkway2grass
+    6400054: walkway3
+    6400056: walkway3grass
+    6400058: walkway4
+    6400060: walkway4Grass
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -231,7 +262,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 10
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

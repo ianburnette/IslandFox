@@ -13,6 +13,7 @@ public class customCameraControls : MonoBehaviour {
 	public bool inDialogue;
 	private int stateToReturnTo = 2;
 	public float heightModBase = 2f;
+	public float camMoveSpeed, camDistMod;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,15 @@ public class customCameraControls : MonoBehaviour {
 	}
 
 	void AlignWithFocus(){
-		transform.position = new Vector3(camFocus.position.x, camFocus.position.y + currentCamHeight - cameraHeightModifier,camFocus.position.z - currentCamDist);
+		//transform.position = new Vector3(camFocus.position.x, camFocus.position.y + currentCamHeight - cameraHeightModifier,camFocus.position.z - currentCamDist);
+		transform.position = Vector3.Lerp (
+			transform.position,
+			new Vector3 (camFocus.position.x, camFocus.position.y + currentCamHeight - cameraHeightModifier, camFocus.position.z - currentCamDist - camDistMod),
+			camMoveSpeed * Time.deltaTime
+
+		);
+
+
 	}
 
 	public void Dialogue(bool state){
