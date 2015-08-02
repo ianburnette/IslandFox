@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e4658f2f3d704374fbf692ef07a96517
-timeCreated: 1438030097
+timeCreated: 1438445440
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,14 @@ TextureImporter:
     21300016: spritesheet-seeds_8
     21300018: spritesheet-seeds_9
     21300020: spritesheet-seeds_10
+    21300022: spritesheet-seeds_11
+    21300024: spritesheet-seeds_12
+    21300026: spritesheet-seeds_13
+    21300028: spritesheet-seeds_14
+    21300030: spritesheet-seeds_15
+    21300032: spritesheet-seeds_16
+    21300034: spritesheet-seeds_17
+    21300036: spritesheet-seeds_18
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -68,7 +76,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_1
       rect:
@@ -78,7 +86,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_2
       rect:
@@ -88,7 +96,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_3
       rect:
@@ -98,7 +106,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_4
       rect:
@@ -108,7 +116,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_5
       rect:
@@ -118,7 +126,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_6
       rect:
@@ -128,7 +136,7 @@ TextureImporter:
         width: 4
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_7
       rect:
@@ -138,7 +146,7 @@ TextureImporter:
         width: 16
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_8
       rect:
@@ -146,9 +154,9 @@ TextureImporter:
         x: 7
         y: 69
         width: 7
-        height: 10
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_9
       rect:
@@ -158,7 +166,7 @@ TextureImporter:
         width: 10
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spritesheet-seeds_10
       rect:
@@ -168,7 +176,67 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 52
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 40
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_13
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 40
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 40
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_17
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 40
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spritesheet-seeds_18
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 40
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

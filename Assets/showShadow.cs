@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class showShadow : MonoBehaviour {
@@ -6,6 +6,7 @@ public class showShadow : MonoBehaviour {
 	public Transform player;
 	Camera cam;
 	public LayerMask mask;
+	public float mult;
 
 	// Use this for initialization
 	void Start () {
@@ -16,13 +17,13 @@ public class showShadow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.DrawRay (transform.position, player.transform.position - transform.position);
+		Debug.DrawRay (transform.position, player.transform.position - transform.position + (Vector3.up * mult));
 		CheckIfBlocked ();
 	}
 
 	void CheckIfBlocked(){
 		RaycastHit hit;
-		if (Physics.Raycast (transform.position, player.transform.position - transform.position, out hit, 100f, mask)) {
+		if (Physics.Raycast (transform.position, player.transform.position - transform.position + (Vector3.up * mult), out hit, 100f, mask)) {
 			print (hit.transform);
 			if (hit.transform.tag != "Player" && cam.enabled == false){
 				cam.enabled = true;

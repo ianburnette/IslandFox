@@ -11,6 +11,8 @@ public class boatControls : MonoBehaviour {
 	public Rigidbody rb;
 	public Transform spriteLocation;
 	public float targetHeight, heightCorrectSpeed, targetTargetHeight, bobTime;
+	public LayerMask mask;
+	public float frontHeight, backHeight;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +24,7 @@ public class boatControls : MonoBehaviour {
 
 	void OnEnable(){
 		rb.isKinematic = false;
-		InvokeRepeating ("Bob", bobTime, bobTime);
+	//	InvokeRepeating ("Bob", bobTime, bobTime);
 	}
 
 	void OnDisable(){
@@ -41,6 +43,55 @@ public class boatControls : MonoBehaviour {
 		MoveDirection ();
 		UpdateAnimator ();
 		LimitSpeed ();
+		CheckBelow ();
+	}
+
+	void CheckBelow(){
+		RaycastHit hit;
+		Debug.DrawRay (transform.position - (transform.up * 1.5f) + (transform.right/2) + (transform.forward), Vector3.down * 50f);
+		Debug.DrawRay (transform.position + (transform.up * 1.5f) + (transform.right/2) + (transform.forward), Vector3.down * 50f);
+
+		//float frontHeight, backHeight;
+
+		bool hittingFront, hittingBack;
+
+		if (Physics.Raycast (transform.position - (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down, out hit, 50f, mask)) {
+			//print ("boat hitting " + hit.transform);
+			hittingFront = true;
+			frontHeight = hit.point.y;
+		} else {
+			hittingFront = false;
+		}if (Physics.Raycast (transform.position + (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down, out hit, 50f, mask)) {
+			//print ("boat hitting " + hit.transform);
+			hittingBack = true;
+			backHeight = hit.point.y;
+		} else {
+			hittingBack = false;
+		}
+
+		if (hittingFront == false && hittingBack == false) {
+			targetHeight = targetTargetHeight;
+		} else if (hittingFront && !hittingBack) {
+			targetHeight = frontHeight + 2f;
+		} else if (!hittingFront && hittingBack) {
+			targetHeight = backHeight + 2f;
+		} else {
+			if (backHeight>frontHeight){
+				targetHeight = backHeight + 2f;
+			}else{
+				targetHeight = frontHeight + 2f;
+			}
+		}
+
+//
+//			if (frontHeight < targetHeight && backHeight < targetHeight){
+//				targetHeight = frontHeight  + 2f;
+//			}else if (frontHeight > targetHeight && frontHeight < transform.position.y && frontHeight > targetHeight && frontHeight < transform.position.y){
+//				targetHeight = frontHeight + 2f;
+//			}
+//		}else{
+//			targetHeight = 10f;	
+//		}
 	}
 
 	void TargetHeight(){
@@ -61,7 +112,7 @@ public class boatControls : MonoBehaviour {
 
 		if (targetHeight > targetTargetHeight) {
 			if (transform.position.y < targetHeight){
-				targetHeight = transform.position.y;
+			//	targetHeight = transform.position.y;
 			}
 		}
 	}
@@ -90,7 +141,7 @@ public class boatControls : MonoBehaviour {
 	}
 
 	void GetStroke(){
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetButtonDown ("X")) {
 			Stroke();
 		}
 	}

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
 		GetComponent<AudioSource>().playOnAwake = false;
 		if(flashObject == null)
 			flashObject = transform;
-		originalColor = flashObject.GetComponent<Renderer>().material.color;
+//		originalColor = flashObject.GetComponent<Renderer>().material.color;
 		defHealth = currentHealth;
 		respawnPos = transform.position;
 	}

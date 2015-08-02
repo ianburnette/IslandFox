@@ -5,14 +5,14 @@ using System.Collections;
 public class NPCDialogueScript : MonoBehaviour {
 
 	public int dialogueProgression = 0;
-	public bool mom;
+	public bool mom, end;
 
 	public GameObject gm;
 	public Transform player;
 
 	public GameObject dialoguePanels;
 
-	public GameObject boat;
+	public GameObject boat, endBoat;
 
 
 	public Text dialoguePanelContents, dialogueSpeakerName;
@@ -56,7 +56,15 @@ public class NPCDialogueScript : MonoBehaviour {
 			dialogueProgression ++;
 		} else if (dialogueProgression == 2 && mom) {
 			SpawnBoat();
+		} if (end) {
+			SwitchBoat();
 		}
+	}
+
+	void SwitchBoat(){
+		boat.SetActive (false);
+		endBoat.transform.parent = null;
+		endBoat.SetActive (true);
 	}
 
 	void SpawnBoat(){
@@ -84,6 +92,7 @@ public class NPCDialogueScript : MonoBehaviour {
 
 		if (readyToStart && Input.GetButtonDown ("X")) {
 			buttonPrompt.SetActive(false);
+			print ("starting " + (dialogueIndex[dialogueProgression]));
 			Dialoguer.StartDialogue(dialogueIndex[dialogueProgression], DialoguerCallback);
 		}
 

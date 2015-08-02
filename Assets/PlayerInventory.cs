@@ -6,6 +6,8 @@ public class PlayerInventory : MonoBehaviour {
 
 	public bool haveBoatSeed, haveIslandSeed, haveHouseSeed;
 
+//	public persistentInventory persInv;
+
 	public Transform currentVineUI, currentVine;
 	public vineGenerator vineGen;
 	public Slider vineRemainingSlider;
@@ -16,13 +18,16 @@ public class PlayerInventory : MonoBehaviour {
 	public bool canPlace, vineActive;
 	public float vertOffset;
 
+	public persistentInventory persInv;
+
 	// Use this for initialization
 	void Start () {
-	
+		persInv = GameObject.Find ("persistentGM").GetComponent<persistentInventory> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		vineSeedQuant = persInv.vineCount;
 		vineUIQuant.text = "" + vineSeedQuant;
 		vineUIShadow.text = "" + vineSeedQuant;
 		SeedInput ();
@@ -30,7 +35,7 @@ public class PlayerInventory : MonoBehaviour {
 			if (vineGen.sections <= 0 && vineActive) {
 				EndVine ();
 			}
-			if (vineGen.sections > 0) {
+			else if (vineGen.sections > 0) {
 				vineRemainingSlider.value = vineGen.sections;
 			} 
 		}
@@ -73,8 +78,11 @@ public class PlayerInventory : MonoBehaviour {
 		currentVine = newVine.transform;
 		currentVineUI.gameObject.SetActive(true);
 		vineRemainingSlider.maxValue = vineGen.sections; 
-		vineSeedQuant--;
+		persInv.vineCount--;
 		vineActive = true;
+		if (Application.loadedLevel == 4) {
+
+		}
 	}
 
 	Vector3 CalcPos(){
@@ -108,11 +116,11 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	public void GetVineSeed(){
-		vineSeedQuant ++;
+		persInv.vineCount++;
 	}
 
 	public void GetSeedSmall(int type){
-print ("figure out small seed inventory!");
+		persInv.AddSeed (type);
 	}
 
 	public void GetBoatSeed(){

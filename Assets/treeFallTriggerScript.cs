@@ -13,8 +13,15 @@ public class treeFallTriggerScript : MonoBehaviour {
 	// Update is called once per frame
 	void OnTriggerEnter (Collider col) {
 		if (col.transform.tag == "Player") {
+			print ("activated");
 			foreach (Rigidbody rb in rbsToActivate){
 				rb.isKinematic = false;
+				rb.transform.GetComponent<MeshCollider>().enabled = false;
+				foreach (Transform child in rb.transform){
+					if (child.GetComponent<MeshCollider>() != null){
+						child.GetComponent<MeshCollider>().enabled = false;
+					}
+				}
 			}
 		}
 	}

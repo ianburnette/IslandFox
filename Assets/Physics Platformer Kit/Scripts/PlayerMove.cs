@@ -17,8 +17,10 @@ public class PlayerMove : MonoBehaviour
 	public cameraChanger camChange;
 	public bool haveCameraFocus = true;
 	private Vector3 camFocusLocation;
+	public GameObject smokePuff;
 
 	public PlayerInventory inventory;
+	public playerIslandGrow islandGrower;
 	public Transform standingOnTransform;
 
 	//setup
@@ -65,6 +67,9 @@ public class PlayerMove : MonoBehaviour
 	{
 		camFocusLocation = myCamFocus.position;
 		inventory = GetComponent<PlayerInventory> ();
+		if (GetComponent<playerIslandGrow> () != null) {
+			islandGrower = GetComponent<playerIslandGrow> ();
+		}
 		camChange = GetComponent<cameraChanger> ();
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
@@ -103,8 +108,8 @@ public class PlayerMove : MonoBehaviour
 	//void UpdateReplacement()
 	{	
 		//handle jumping
-		JumpCalculations ();
-		CheckStandingTransform ();
+//		JumpCalculations ();
+//		CheckStandingTransform ();
 		//adjust movement values if we're in the air or on the ground
 		curAccel = (grounded) ? accel : airAccel;
 		curDecel = (grounded) ? decel : airDecel;
@@ -128,14 +133,21 @@ public class PlayerMove : MonoBehaviour
 	}
 
 	void CheckStandingTransform(){
-		if (grounded){
+	//	print (standingOnTransform.name);
+		if (grounded && standingOnTransform!=null){
 			if (standingOnTransform.tag == "Ground"){
 				inventory.canPlace = true;
+				if (islandGrower != null)
+				islandGrower.canPlace = true;
 			}else{
 				inventory.canPlace = false;
+				if (islandGrower != null)
+					islandGrower.canPlace = false;
 			}
 		}else{
 			inventory.canPlace = false;
+			if (islandGrower != null)
+				islandGrower.canPlace = false;
 		}
 	}
 	
@@ -144,9 +156,9 @@ public class PlayerMove : MonoBehaviour
 		anim.SetFloat ("xDir", h);
 		anim.SetFloat ("zDir", v);
 
-		if (h != 0 || v != 0) {
+		if (h * accel != 0 || v * accel != 0) {
 			anim.SetBool ("moving", true);
-		} else {
+		} else if (h * accel ==0 && v * accel ==0){
 			anim.SetBool ("moving", false);
 		}
 
@@ -220,6 +232,8 @@ public class PlayerMove : MonoBehaviour
 	//apply correct player movement (fixedUpdate for physics calculations)
 	void FixedUpdate() 
 	{
+		JumpCalculations ();
+		CheckStandingTransform ();
 		//UpdateReplacement ();
 		//are we grounded
 		grounded = IsGrounded ();
@@ -336,6 +350,7 @@ public class PlayerMove : MonoBehaviour
 			GetComponent<AudioSource>().volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
 			GetComponent<AudioSource>().clip = landSound;
 			GetComponent<AudioSource>().Play ();
+			Puff();
 		}
 		//if we press jump in the air, save the time
 		if (Input.GetButtonDown ("A") && !grounded) {
@@ -368,7 +383,11 @@ public class PlayerMove : MonoBehaviour
 			}
 		}
 	}
-	
+
+	void Puff(){
+		Instantiate (smokePuff, transform.position - (Vector3.up * 0.5f), Quaternion.identity);
+	}
+
 	//push player at jump force
 	public void Jump(Vector3 jumpVelocity)
 	{
@@ -378,6 +397,7 @@ public class PlayerMove : MonoBehaviour
 			GetComponent<AudioSource>().clip = jumpSound;
 			GetComponent<AudioSource>().Play ();
 		}
+		Puff();
 		GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z);
 		GetComponent<Rigidbody>().AddRelativeForce (jumpVelocity, ForceMode.Impulse);
 		airPressTime = 0f;

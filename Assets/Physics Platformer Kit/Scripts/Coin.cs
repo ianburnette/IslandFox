@@ -6,13 +6,14 @@ public class Coin : MonoBehaviour
 {
 
 	public int seedType;
+	public int seedSubType;
 
 	//1 = random generic
 	//2 = vine seed
 	//3 = boat seed
 	//4 = island seed
 	//5 = house seed
-
+	public GameObject particles;
 
 	public GUIManager gui;									//GUIManager script to update with "coins collected"
 	public AudioClip collectSound;							//sound to play when coin is collected
@@ -28,6 +29,7 @@ public class Coin : MonoBehaviour
 	//setup
 	void Awake()
 	{
+		particles = Resources.Load ("getSeed") as GameObject;
 		if(tag != "Coin")
 		{
 			tag = "Coin";
@@ -56,6 +58,9 @@ public class Coin : MonoBehaviour
 	void Start()
 	{
 		player = GameObject.Find("Player").transform;
+		if (seedType == 0) {
+			collected = true;
+		}
 	}
 	
 	//move coin toward player when he is close to it, and increase the spin/speed of the coin
@@ -77,7 +82,7 @@ public class Coin : MonoBehaviour
 	//give player coin when it touches them
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player") {
+		if (other.tag == "Player" || other.tag == "Boat") {
 			CoinGet ();
 			player = other.transform;
 		}
@@ -89,8 +94,8 @@ public class Coin : MonoBehaviour
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 		if (seedType == 0) {
-			player.GetComponent<PlayerInventory>().GetSeedSmall(0);
-			print ("setup small seed associations");
+			player.GetComponent<PlayerInventory>().GetSeedSmall(seedSubType);
+			//print ("setup small seed associations");
 		} else if (seedType == 1) {
 			player.SendMessage ("GetVineSeed");
 		}else if (seedType == 2) {
@@ -101,7 +106,7 @@ public class Coin : MonoBehaviour
 			player.SendMessage ("GetHouseSeed");
 		}
 
-		print ("set");
+		Instantiate (particles, transform.position, Quaternion.identity);
 		if (gui)
 			gui.coinsCollected ++;
 		Destroy(gameObject);

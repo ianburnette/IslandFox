@@ -7,4 +7,8 @@ public enum DialoguerDialogues{
 	MomDialogue = 4,
 	Mom2 = 5,
 	Mom3 = 6,
+	Dad1 = 7,
+	Dad2 = 8,
+	ParentsEnd1 = 9,
+	ParentsEnd2 = 10,
 }

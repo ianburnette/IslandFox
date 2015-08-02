@@ -9,6 +9,8 @@ public class boatCollider : MonoBehaviour {
 	public float pushHeight;
 	boatControls controls;
 	public GameObject inBoatSprite;
+	public float targetHeight, frontHeight, backHeight, targetTargetHeight, correctSpeed;
+	public LayerMask mask;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +21,60 @@ public class boatCollider : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown ("A") && inBoat) {
 			EnablePlayer ();
+		}
+		if (!inBoat) {
+			CheckBelow();
+		}
+	}
+
+	void CheckBelow(){
+		RaycastHit hit;
+		Debug.DrawRay (transform.position - (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down * 50f);
+		Debug.DrawRay (transform.position + (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down * 50f);
+		
+		//float frontHeight, backHeight;
+		
+		bool hittingFront, hittingBack;
+		
+		if (Physics.Raycast (transform.position - (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down, out hit, 50f, mask)) {
+			//print ("boat hitting " + hit.transform);
+			hittingFront = true;
+			frontHeight = hit.point.y;
+		} else {
+			hittingFront = false;
+		}
+		if (Physics.Raycast (transform.position + (transform.up * 1.5f) + (transform.right / 2) + (transform.forward), Vector3.down, out hit, 50f, mask)) {
+			//print ("boat hitting " + hit.transform);
+			hittingBack = true;
+			backHeight = hit.point.y;
+		} else {
+			hittingBack = false;
+		}
+		
+		if (hittingFront == false && hittingBack == false) {
+			targetHeight = targetTargetHeight;
+		} else if (hittingFront && !hittingBack) {
+			targetHeight = frontHeight;
+		} else if (!hittingFront && hittingBack) {
+			targetHeight = backHeight;
+		} else {
+			if (backHeight > frontHeight) {
+				targetHeight = backHeight;
+			} else {
+				targetHeight = frontHeight;
+			}
+		}
+
+		if (!hittingFront && !hittingBack) {
+			targetHeight = targetTargetHeight;
+		}
+
+		if (transform.position.y > targetHeight ) {
+			transform.position = Vector3.Lerp (transform.position, 
+			                                   new Vector3 (transform.position.x, targetHeight, transform.position.z),
+			                                   correctSpeed * Time.deltaTime);
+			             					
+			            
 		}
 	}
 

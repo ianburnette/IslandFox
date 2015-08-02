@@ -25,6 +25,7 @@ public class persistentGMScript : MonoBehaviour {
 				player.transform.position = GameObject.Find ("spawnLocation0").transform.position;
 			} else if (comingFrom == 3) {
 				FindBoat ();
+				FindPlayer ();
 				boat.transform.position = GameObject.Find ("spawnLocation1").transform.position;
 				player.transform.position = boat.transform.position + boatOffset;
 			} 
@@ -34,17 +35,28 @@ public class persistentGMScript : MonoBehaviour {
 		} else if (levelToSet == 2) {
 			if (comingFrom == 2) {
 				FindBoat ();
+				FindPlayer ();
 				boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
 				player.transform.position = boat.transform.position + boatOffset;
 			} else if (comingFrom == 3) {
 				FindBoat ();
+				FindPlayer ();
 				boat.transform.position = GameObject.Find ("spawnLocation1").transform.position;
 				player.transform.position = boat.transform.position + boatOffset;
 			}
 		}else if (levelToSet == 3) {
-			FindBoat ();
-			boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
-			player.transform.position = boat.transform.position + boatOffset;
+			if (comingFrom == 2){
+				FindBoat ();
+				FindPlayer ();
+				boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+				player.transform.position = boat.transform.position + boatOffset;
+			}
+			else if (comingFrom == 3){
+				FindPlayer ();
+				FindBoat ();
+				boat.transform.position = GameObject.Find ("spawnLocation0").transform.position;
+				player.transform.position = GameObject.Find ("spawnLocation1").transform.position;
+			}
 		}
 
 	}

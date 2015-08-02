@@ -101,7 +101,7 @@ public class customCameraControls : MonoBehaviour {
 		iTween.ValueTo (gameObject, iTween.Hash(
 			"from", currentCamHeight,
 			"to", camVectors [pos-1].y,
-			"time", posChangeTime,
+			"time", posChangeTime/3,
 			"onupdate", "SetY"
 			));
 		iTween.ValueTo (gameObject, iTween.Hash(
