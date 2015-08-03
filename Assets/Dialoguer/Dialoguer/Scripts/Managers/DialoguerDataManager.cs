@@ -62,12 +62,17 @@ namespace DialoguerCore{
 		
 		#region Dialogues
 		public static DialoguerDialogue GetDialogueById(int dialogueId){
-			if(_data.dialogues.Count <= dialogueId){
-				Debug.LogWarning("Dialogue ["+dialogueId+"] does not exist.");
+			if (_data != null) {
+				Debug.LogWarning (_data.dialogues.Count + " dialogues found, trying to display " + dialogueId);
+				if (_data.dialogues.Count <= dialogueId) {
+					Debug.LogWarning ("Dialogue [" + dialogueId + "] does not exist.");
+					return null;
+				}
+				return _data.dialogues [dialogueId];
+			} else {
 				return null;
 			}
-			
-			return _data.dialogues[dialogueId];
+
 		}
 		#endregion
 	}

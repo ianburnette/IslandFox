@@ -77,7 +77,8 @@ public class NPCDialogueScript : MonoBehaviour {
 	}
 
 	void ShowPanels (bool state){
-		dialoguePanels.SetActive (state);
+		GameObject.Find ("UI").transform.GetChild (0).gameObject.SetActive (state);
+		//dialoguePanels.SetActive (state);
 	}
 
 	// Update is called once per frame

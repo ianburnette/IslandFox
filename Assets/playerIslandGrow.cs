@@ -16,7 +16,11 @@ public class playerIslandGrow : MonoBehaviour {
 		grasses, flowers, fences, signs, stumps,
 		rocks, mushrooms, barrels;
 
+	public GameObject closedDoor, openDoor;
+
 	public persistentInventory persInv;
+
+
 	
 	//public Transform currentVineUI, currentVine;
 	//public vineGenerator vineGen;
@@ -103,6 +107,11 @@ public class playerIslandGrow : MonoBehaviour {
 		
 	}
 
+	public void OutsideAtNight(){
+		//closedDoor.SetActive(true);
+		//openDoor.(false);
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -111,10 +120,17 @@ public class playerIslandGrow : MonoBehaviour {
 		currentCount1.text = "" + currentCount;
 		currentCount2.text = "" + currentCount;
 
-		currentSeedImage.sprite = persInv.seedInventory [currentItemToPlace].transform.parent.GetChild (2).GetComponent<Image> ().sprite;
-		if (currentCount <= 0) {
+
+		if (currentCount <= 0 && currentItemToPlace < 12) {
 			currentItemToPlace++;
+		} else if (currentItemToPlace == 12) {
+			seedPlantingHUD.SetActive(false);
+			this.enabled = false;
+			closedDoor.SetActive(false);
+			openDoor.SetActive(true);
 		}
+
+		currentSeedImage.sprite = persInv.seedInventory [currentItemToPlace].transform.parent.GetChild (2).GetComponent<Image> ().sprite;
 
 //		vineSeedQuant = persInv.vineCount;
 //		vineUIQuant.text = "" + vineSeedQuant;

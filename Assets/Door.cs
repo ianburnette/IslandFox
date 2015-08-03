@@ -19,6 +19,7 @@ public class Door : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if (col.transform.tag == "Player" || col.transform.tag == "Boat") {
 			levelMan.ChangeLevel(levelToLoad);
+			col.GetComponent<PlayerMove>().enabled = false;
 		}
 	}
 }

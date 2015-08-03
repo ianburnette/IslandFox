@@ -17,6 +17,7 @@ namespace DialoguerCore{
 		}
 		
 		public static void startDialogue(int dialogueId){
+
 			if(dialogue != null){ 
 				DialoguerEventManager.dispatchOnSuddenlyEnded();
 			}
@@ -25,9 +26,11 @@ namespace DialoguerCore{
 			DialoguerEventManager.dispatchOnStarted();
 			
 			// Set References
+
 			dialogue = DialoguerDataManager.GetDialogueById(dialogueId);
 			dialogue.Reset();
 			setupPhase(dialogue.startPhaseId);
+
 		}
 		
 		public static void continueDialogue(int outId){

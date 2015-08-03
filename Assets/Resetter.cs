@@ -31,9 +31,8 @@ public class Resetter : MonoBehaviour {
 		}
 	}
 
-	void Reset(){
+	public void Reset(){
 		playerRB.velocity = Vector3.zero;
 		player.transform.position = currentCheckpoint.position;
-
 	}
 }

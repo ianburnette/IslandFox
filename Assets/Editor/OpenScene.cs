@@ -34,6 +34,8 @@ public class OpenScene: MonoBehaviour {
 	[MenuItem("Open Scene/Levels/HomeInterior")] static void OpenLevel_002() { Open( prefix_Levels + "HomeInterior" ); }
 	[MenuItem("Open Scene/Levels/WaterfallIslands")] static void OpenLevel_003() { Open( prefix_Levels + "WaterfallIslands" ); }
 	[MenuItem("Open Scene/Levels/GrandparentsIsland")] static void OpenLevel_004() { Open( prefix_Levels + "GrandparentsIsland" ); }
+	[MenuItem("Open Scene/Levels/HomeIslandReturn")] static void OpenLevel_005() { Open( prefix_Levels + "HomeIslandReturn" ); }
+
 	
 //	[MenuItem("Open Scene/TestScenes/Test1")] static void OpenLevel_Test_1() { Open( prefix_Tests + "TestScene_1" ); }
 //	[MenuItem("Open Scene/TestScenes/Test2")] static void OpenLevel_Test_2() { Open( prefix_Tests + "TestScene_2" ); }

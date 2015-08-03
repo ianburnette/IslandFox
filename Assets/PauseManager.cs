@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems; 
+using UnityEngine.UI;
+
 
 public class PauseManager : MonoBehaviour {
 
@@ -7,15 +10,82 @@ public class PauseManager : MonoBehaviour {
 	public bool pauseScreen = false;
 	public bool inventory = false;
 
+	public EventSystem eventMan;
+
 	public GameObject pauseUI, inventoryUI;
+	public GameObject resumeButton;
+
+	persistentAudio audioMan;
+
+	public Slider musicSlider, masterSlider;
 
 	// Use this for initialization
 	void Start () {
-	
+		eventMan = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();// as EventSystem;
+		resumeButton = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (2).gameObject;
+		audioMan = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
+		GetSliders ();
+		SetVolumes ();
+	}
+
+	void GetSliders(){
+		musicSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (3).gameObject.GetComponent<Slider>();
+		masterSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (4).gameObject.GetComponent<Slider>();
+	}
+
+	public void ReloadCheckpoint(){
+		GameObject.Find ("TheDrink").GetComponent<Resetter> ().Reset ();
 	}
 	
+	public void SaveAndQuit(){
+		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().SaveInventory ();
+		audioMan.SaveLevels ();
+		PlayerPrefs.SetInt ("SaveLevel", Application.loadedLevel);
+		GetComponent<levelManager> ().ChangeLevel (0);
+	}
+
+	public void PauseButtonPressed(){
+		if (paused && !inventory){
+			TogglePause();
+			//PauseScreen(false);
+		}else if (!paused && !inventory){
+			TogglePause();
+			//PauseScreen(true);
+		}else if (paused && inventory){
+			ToggleInventory(false);
+		}
+	}
+
+	
+	public void DecAud(int which){
+		if (which == 0) {
+			musicSlider.value-=0.1f;
+		}if (which == 1) {
+			masterSlider.value-=0.1f;
+		}
+	}
+	
+	public void IncAud(int which){
+		if (which == 0) {
+			musicSlider.value+=0.1f;
+		}if (which == 1) {
+			masterSlider.value+=0.1f;
+		}
+	}
+
+	void SetVolumes(){
+		musicSlider.value = audioMan.musicLevel;
+		masterSlider.value = audioMan.masterVolume;
+	}
+
+	void UpdateVolumes(){
+		audioMan.musicLevel = musicSlider.value;// = audioMan.musicLevel;
+		audioMan.masterVolume = masterSlider.value;
+	}
+
 	// Update is called once per frame
 	void Update () {
+
 		if (Input.GetButtonDown("Pause")){
 			if (paused && !inventory){
 				TogglePause();
@@ -42,6 +112,10 @@ public class PauseManager : MonoBehaviour {
 				ToggleInventory(false);
 			}
 		}
+
+		if (paused) {
+			UpdateVolumes ();
+		}
 	}
 
 	void ToggleInventory(bool status){
@@ -63,11 +137,13 @@ public class PauseManager : MonoBehaviour {
 
 	void PauseScreen(bool status){
 		if (status) {
+			eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
 			pauseUI.SetActive (true);
 			pauseScreen = true;
 		} else {
 			pauseUI.SetActive (false);
 			pauseScreen = false;
+			audioMan.SaveLevels ();
 		}
 
 	}

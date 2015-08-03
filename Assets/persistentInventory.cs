@@ -19,13 +19,19 @@ public class persistentInventory : MonoBehaviour {
 				fence, sign, stump,
 				rock, mushroom, barrel;
 
+	void OnEnable(){
+		LoadInventory ();
+	}
+
 	// Use this for initialization
 	void Start () {
 	
-		if (Application.loadedLevel == 2) {
-			level1Objects = GameObject.FindGameObjectsWithTag("Prop");
+		if (Application.loadedLevel == 1) {
+			FindInventoryAssociations();
 		}
-		if (Application.loadedLevel == 3) {
+		if (Application.loadedLevel == 2) {
+			FindInventoryAssociations();
+		}if (Application.loadedLevel == 3) {
 			FindInventoryAssociations();
 		}if (Application.loadedLevel == 4) {
 			FindInventoryAssociations();
@@ -34,11 +40,42 @@ public class persistentInventory : MonoBehaviour {
 		}
 	}
 
+	public void SaveInventory(){
+		PlayerPrefs.SetInt ("roundTree", roundTree);
+		PlayerPrefs.SetInt ("pointyTree", pointyTree);
+		PlayerPrefs.SetInt ("bush", bush);
+		PlayerPrefs.SetInt ("bareSapling", bareSapling);
+		PlayerPrefs.SetInt ("grass", grass);
+		PlayerPrefs.SetInt ("flower", flower);
+		PlayerPrefs.SetInt ("fence", fence);
+		PlayerPrefs.SetInt ("sign", sign);
+		PlayerPrefs.SetInt ("stump", stump);
+		PlayerPrefs.SetInt ("rock", rock);
+		PlayerPrefs.SetInt ("mushroom", mushroom);
+		PlayerPrefs.SetInt ("barrel", barrel);
+	}
+
+	public void LoadInventory(){
+		roundTree = PlayerPrefs.GetInt ("roundTree");//, roundTree);
+		pointyTree=PlayerPrefs.GetInt ("pointyTree");//, pointyTree);
+		bush=PlayerPrefs.GetInt ("bush");//, bush);
+		bareSapling=PlayerPrefs.GetInt ("bareSapling");//, bareSapling);
+		grass=PlayerPrefs.GetInt ("grass");//, grass);
+		flower=PlayerPrefs.GetInt ("flower");//, flower);
+		fence=PlayerPrefs.GetInt ("fence");//, fence);
+		sign=PlayerPrefs.GetInt("sign");//, sign);
+		stump=PlayerPrefs.GetInt ("stump");//, stump);
+        rock=PlayerPrefs.GetInt ("rock");//, rock);
+        mushroom=PlayerPrefs.GetInt ("mushroom");//, mushroom);
+		barrel=PlayerPrefs.GetInt("barrel");//, barrel);
+	}
+
 	void FindInventoryAssociations(){
-		inventoryCanvas = GameObject.Find ("InventoryCanvas");
-		if (inventoryCanvas.activeSelf == false) {
-			inventoryCanvas.SetActive(true);
-		}
+		print ("finding inventory associations");
+		inventoryCanvas = GameObject.Find ("colTex1").transform.root.GetChild (2).GetChild (4).gameObject;// GameObject.Find ("InventoryCanvas");
+//		if (inventoryCanvas.activeSelf == false) {
+//			inventoryCanvas.SetActive(true);
+//		}
 		for (int i = 0; i<seedInventory.Length; i++) {
 			if (i==0){seedInventory[i] =  GameObject.Find ("colTex1").GetComponent<Text> ();}
 			if (i==1){seedInventory[i] =  GameObject.Find ("colTex2").GetComponent<Text> ();}
@@ -63,13 +100,15 @@ public class persistentInventory : MonoBehaviour {
 	void OnLevelWasLoaded(int level) {
 		print ("level");
 
-		if (level == 2) {
-			foreach (GameObject prop in level1Objects){
-				if (prop != null){
+		FindInventoryAssociations ();
 
-				}
-			}
-		}
+//		if (level == 2) {
+//			foreach (GameObject prop in level1Objects){
+//				if (prop != null){
+//
+//				}
+//			}
+//		}
 	}
 
 	public void AddSeed (int type){
