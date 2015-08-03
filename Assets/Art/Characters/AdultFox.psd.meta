@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bd43cf51f80665743930c159694a5355
-timeCreated: 1437099728
+timeCreated: 1438622312
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -18,6 +18,31 @@ TextureImporter:
     21300022: AdultFox_11
     21300024: AdultFox_12
     21300026: AdultFox_13
+    21300028: AdultFox_14
+    21300030: AdultFox_15
+    21300032: AdultFox_16
+    21300034: AdultFox_17
+    21300036: AdultFox_18
+    21300038: AdultFox_19
+    21300040: AdultFox_20
+    21300042: AdultFox_21
+    21300044: AdultFox_22
+    21300046: AdultFox_23
+    21300048: AdultFox_24
+    21300050: AdultFox_25
+    21300052: AdultFox_26
+    21300054: AdultFox_27
+    21300056: AdultFox_28
+    21300058: AdultFox_29
+    21300060: AdultFox_30
+    21300062: AdultFox_31
+    21300064: AdultFox_32
+    21300066: AdultFox_33
+    21300068: AdultFox_34
+    21300070: AdultFox_35
+    21300072: AdultFox_36
+    21300074: AdultFox_37
+    21300076: AdultFox_38
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,140 +91,390 @@ TextureImporter:
     - name: AdultFox_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 1
         y: 128
-        width: 24
-        height: 24
+        width: 30
+        height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 33
         y: 128
-        width: 24
-        height: 24
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 65
         y: 128
-        width: 24
-        height: 24
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_3
       rect:
         serializedVersion: 2
-        x: 100
+        x: 97
         y: 128
-        width: 24
-        height: 24
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_4
       rect:
         serializedVersion: 2
-        x: 132
+        x: 129
         y: 128
-        width: 24
-        height: 24
+        width: 30
+        height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_5
       rect:
         serializedVersion: 2
-        x: 4
-        y: 96
-        width: 24
-        height: 24
+        x: 161
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_6
       rect:
         serializedVersion: 2
-        x: 36
-        y: 96
-        width: 24
-        height: 24
+        x: 193
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_7
       rect:
         serializedVersion: 2
-        x: 68
-        y: 96
-        width: 24
-        height: 24
+        x: 225
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_8
       rect:
         serializedVersion: 2
-        x: 100
-        y: 96
-        width: 24
-        height: 24
+        x: 257
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_9
       rect:
         serializedVersion: 2
-        x: 132
-        y: 96
-        width: 24
-        height: 27
+        x: 289
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_10
       rect:
         serializedVersion: 2
-        x: 4
-        y: 64
-        width: 24
-        height: 24
+        x: 321
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_11
       rect:
         serializedVersion: 2
-        x: 36
-        y: 64
-        width: 24
-        height: 24
+        x: 353
+        y: 128
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_12
       rect:
         serializedVersion: 2
-        x: 68
-        y: 64
-        width: 24
-        height: 24
+        x: 65
+        y: 96
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_13
       rect:
         serializedVersion: 2
-        x: 100
+        x: 97
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_14
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_15
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_16
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_17
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_18
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_19
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_20
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_21
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_22
+      rect:
+        serializedVersion: 2
+        x: 65
         y: 64
-        width: 24
-        height: 24
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_23
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_24
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_25
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_26
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_27
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_28
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_29
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_30
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_31
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 64
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_32
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_33
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_34
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_35
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_36
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_37
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 32
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_38
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 32
+        width: 30
+        height: 30
       alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
