@@ -36,6 +36,7 @@ public class levelManager : MonoBehaviour {
 
 	void FadeOut(){
 		targetAlpha = 1f;
+		loadingText.SetActive (true);
 	}
 
 	// Use this for initialization
@@ -51,12 +52,14 @@ public class levelManager : MonoBehaviour {
 		}else if (fadeImage.color.a < targetAlpha) {
 			fadeImage.color = new Color (fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + (fadeIncrement * fadeTime));
 		}
-		if (changeLevel && fadeImage.color.a >= targetAlpha - 0.1f) {
+		if (changeLevel && fadeImage.color.a >= targetAlpha ) {
 			print ("changing?");
 			loadingText.SetActive(true);
 			changeLevel = false;
 			GameObject.Find ("persistentGM").GetComponent<persistentGMScript>().comingFrom = Application.loadedLevel;
 			Application.LoadLevel(levelToLoad);
+			targetAlpha = 0f;
+			loadingText.SetActive (false);
 		}
 		if (debug) {
 			if (Input.GetKeyDown (KeyCode.Alpha1)){

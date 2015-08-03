@@ -16,7 +16,7 @@ public class showShadow : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Debug.DrawRay (transform.position, player.transform.position - transform.position + (Vector3.up * mult));
 		CheckIfBlocked ();
 	}
@@ -24,7 +24,7 @@ public class showShadow : MonoBehaviour {
 	void CheckIfBlocked(){
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, player.transform.position - transform.position + (Vector3.up * mult), out hit, 100f, mask)) {
-//			print (hit.transform);
+			print (hit.transform);
 			if (hit.transform.tag != "Player" && cam.enabled == false){
 				cam.enabled = true;
 			}else if ( hit.transform.tag == "Player" && cam.enabled == true){

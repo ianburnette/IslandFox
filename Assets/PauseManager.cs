@@ -21,23 +21,28 @@ public class PauseManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		eventMan = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();// as EventSystem;
-		resumeButton = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (2).gameObject;
+		//eventMan = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();// as EventSystem;
+		//resumeButton = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (2).gameObject;
 		audioMan = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 		GetSliders ();
 		SetVolumes ();
 	}
 
 	void GetSliders(){
-		musicSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (3).gameObject.GetComponent<Slider>();
-		masterSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (4).gameObject.GetComponent<Slider>();
+		//musicSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (3).gameObject.GetComponent<Slider>();
+		//masterSlider = transform.GetChild (2).GetChild (3).GetChild (2).GetChild (4).gameObject.GetComponent<Slider>();
 	}
 
 	public void ReloadCheckpoint(){
+		TogglePause ();
+		PauseScreen (false);
 		GameObject.Find ("TheDrink").GetComponent<Resetter> ().Reset ();
 	}
 	
 	public void SaveAndQuit(){
+		
+		TogglePause ();
+		PauseScreen (false);
 		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().SaveInventory ();
 		audioMan.SaveLevels ();
 		PlayerPrefs.SetInt ("SaveLevel", Application.loadedLevel);
@@ -47,10 +52,10 @@ public class PauseManager : MonoBehaviour {
 	public void PauseButtonPressed(){
 		if (paused && !inventory){
 			TogglePause();
-			//PauseScreen(false);
+			PauseScreen(false);
 		}else if (!paused && !inventory){
 			TogglePause();
-			//PauseScreen(true);
+			PauseScreen(true);
 		}else if (paused && inventory){
 			ToggleInventory(false);
 		}
@@ -89,10 +94,10 @@ public class PauseManager : MonoBehaviour {
 		if (Input.GetButtonDown("Pause")){
 			if (paused && !inventory){
 				TogglePause();
-				//PauseScreen(false);
+				PauseScreen(false);
 			}else if (!paused && !inventory){
 				TogglePause();
-				//PauseScreen(true);
+				PauseScreen(true);
 			}else if (paused && inventory){
 				ToggleInventory(false);
 			}
@@ -132,7 +137,7 @@ public class PauseManager : MonoBehaviour {
 	void TogglePause(){
 		Time.timeScale = 1 - Time.timeScale;
 		paused = !paused;
-		PauseScreen(paused);
+		//PauseScreen(paused);
 	}
 
 	void PauseScreen(bool status){

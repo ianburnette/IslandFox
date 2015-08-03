@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerInventory : MonoBehaviour {
 
-	public bool haveBoatSeed, haveIslandSeed, haveHouseSeed;
+	public bool haveMastSeed, haveBoatSeed, haveIslandSeed, haveHouseSeed;
 
 //	public persistentInventory persInv;
 
@@ -76,7 +76,9 @@ public class PlayerInventory : MonoBehaviour {
 		vineGen = newVine.GetComponent<vineGenerator> ();
 		vineGen.player = transform;
 		currentVine = newVine.transform;
+
 		currentVineUI.gameObject.SetActive(true);
+		print ("placing");
 		vineRemainingSlider.maxValue = vineGen.sections; 
 		persInv.vineCount--;
 		vineActive = true;
@@ -122,11 +124,15 @@ public class PlayerInventory : MonoBehaviour {
 	public void GetSeedSmall(int type){
 		persInv.AddSeed (type);
 	}
-
+	public void GetMastSeed(){
+		print ("getting mast seed");
+		haveMastSeed = true;
+		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 1;
+	}
 	public void GetBoatSeed(){
 		print ("getting boat seed");
 		haveBoatSeed = true;
-		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 2;
+		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 3;
 	}public void GetIslandSeed(){
 		haveIslandSeed = true;
 	}public void GetHouseSeed(){

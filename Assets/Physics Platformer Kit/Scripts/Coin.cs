@@ -94,16 +94,18 @@ public class Coin : MonoBehaviour
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 		if (seedType == 0) {
-			player.GetComponent<PlayerInventory>().GetSeedSmall(seedSubType);
+			player.GetComponent<PlayerInventory> ().GetSeedSmall (seedSubType);
 			//print ("setup small seed associations");
 		} else if (seedType == 1) {
 			player.SendMessage ("GetVineSeed");
-		}else if (seedType == 2) {
+		} else if (seedType == 2) {
 			player.SendMessage ("GetBoatSeed");
-		}else if (seedType == 3) {
+		} else if (seedType == 3) {
 			player.SendMessage ("GetIslandSeed");
-		}else if (seedType == 4) {
+		} else if (seedType == 4) {
 			player.SendMessage ("GetHouseSeed");
+		} else if (seedType == 5) {
+			player.SendMessage ("GetMastSeed");
 		}
 
 		Instantiate (particles, transform.position, Quaternion.identity);

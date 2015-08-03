@@ -2,10 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+//[ExecuteInEditMode]
 public class persistentInventory : MonoBehaviour {
-
-	public GameObject[] level1Objects;
 
 	public Text[] seedInventory;
 
@@ -19,8 +17,13 @@ public class persistentInventory : MonoBehaviour {
 				fence, sign, stump,
 				rock, mushroom, barrel;
 
+	public Transform currentVineUI;
+	public Slider vineRemainingSlider;
+	public Text vineUIQuant, vineUIShadow;
+
 	void OnEnable(){
 		LoadInventory ();
+		FindInventoryAssociations ();
 	}
 
 	// Use this for initialization
@@ -71,34 +74,46 @@ public class persistentInventory : MonoBehaviour {
 	}
 
 	void FindInventoryAssociations(){
-		print ("finding inventory associations");
-		inventoryCanvas = GameObject.Find ("colTex1").transform.root.GetChild (2).GetChild (4).gameObject;// GameObject.Find ("InventoryCanvas");
-//		if (inventoryCanvas.activeSelf == false) {
-//			inventoryCanvas.SetActive(true);
+
+
+
+		PlayerInventory playerInv = GameObject.Find ("Player").GetComponent<PlayerInventory> ();
+		playerInv.currentVineUI = currentVineUI;
+		playerInv.vineRemainingSlider = vineRemainingSlider;
+		playerInv.vineUIQuant = vineUIQuant;
+		playerInv.vineUIShadow = vineUIShadow;
+
+
+
+		//PauseManager
+//		print ("finding inventory associations");
+//		inventoryCanvas = GameObject.Find ("InventoryCanvas");//.transform.root.GetChild (2).GetChild (4).gameObject;// GameObject.Find ("InventoryCanvas");
+////		if (inventoryCanvas.activeSelf == false) {
+////			inventoryCanvas.SetActive(true);
+////		}
+//		for (int i = 0; i<seedInventory.Length; i++) {
+//			if (i==0){seedInventory[i] =  GameObject.Find ("colTex1").GetComponent<Text> ();}
+//			if (i==1){seedInventory[i] =  GameObject.Find ("colTex2").GetComponent<Text> ();}
+//			if (i==2){seedInventory[i] =  GameObject.Find ("colTex3").GetComponent<Text> ();}
+//			if (i==3){seedInventory[i] =  GameObject.Find ("colTex4").GetComponent<Text> ();}
+//			if (i==4){seedInventory[i] =  GameObject.Find ("colTex5").GetComponent<Text> ();}
+//			if (i==5){seedInventory[i] =  GameObject.Find ("colTex6").GetComponent<Text> ();}
+//			if (i==6){seedInventory[i] =  GameObject.Find ("colTex7").GetComponent<Text> ();}
+//			if (i==7){seedInventory[i] =  GameObject.Find ("colTex8").GetComponent<Text> ();}
+//			if (i==8){seedInventory[i] =  GameObject.Find ("colTex9").GetComponent<Text> ();}
+//			if (i==9){seedInventory[i] =  GameObject.Find ("colTex10").GetComponent<Text> ();}
+//			if (i==10){seedInventory[i] =  GameObject.Find("colTex11").GetComponent<Text> ();}
+//			if (i==11){seedInventory[i] =  GameObject.Find("colTex12").GetComponent<Text> ();}
 //		}
-		for (int i = 0; i<seedInventory.Length; i++) {
-			if (i==0){seedInventory[i] =  GameObject.Find ("colTex1").GetComponent<Text> ();}
-			if (i==1){seedInventory[i] =  GameObject.Find ("colTex2").GetComponent<Text> ();}
-			if (i==2){seedInventory[i] =  GameObject.Find ("colTex3").GetComponent<Text> ();}
-			if (i==3){seedInventory[i] =  GameObject.Find ("colTex4").GetComponent<Text> ();}
-			if (i==4){seedInventory[i] =  GameObject.Find ("colTex5").GetComponent<Text> ();}
-			if (i==5){seedInventory[i] =  GameObject.Find ("colTex6").GetComponent<Text> ();}
-			if (i==6){seedInventory[i] =  GameObject.Find ("colTex7").GetComponent<Text> ();}
-			if (i==7){seedInventory[i] =  GameObject.Find ("colTex8").GetComponent<Text> ();}
-			if (i==8){seedInventory[i] =  GameObject.Find ("colTex9").GetComponent<Text> ();}
-			if (i==9){seedInventory[i] =  GameObject.Find ("colTex10").GetComponent<Text> ();}
-			if (i==10){seedInventory[i] =  GameObject.Find("colTex11").GetComponent<Text> ();}
-			if (i==11){seedInventory[i] =  GameObject.Find("colTex12").GetComponent<Text> ();}
-		}
-		
-		vineInventory = GameObject.Find ("vineSeedCount").GetComponent<Text> ();
-		hudVineCount1 = GameObject.Find ("vineHud1").GetComponent<Text> ();
-		hudVineCount2 = GameObject.Find ("vineHud2").GetComponent<Text> ();
-		inventoryCanvas.SetActive (false);
+//		
+//		vineInventory = GameObject.Find ("vineSeedCount").GetComponent<Text> ();
+//		hudVineCount1 = GameObject.Find ("vineHud1").GetComponent<Text> ();
+//		hudVineCount2 = GameObject.Find ("vineHud2").GetComponent<Text> ();
+//		inventoryCanvas.SetActive (false);
 	}
 	
 	void OnLevelWasLoaded(int level) {
-		print ("level");
+		print ("level loaded " + Application.loadedLevel);
 
 		FindInventoryAssociations ();
 

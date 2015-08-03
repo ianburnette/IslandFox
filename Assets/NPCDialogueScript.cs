@@ -2,9 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 
+//[ExecuteInEditMode]
 public class NPCDialogueScript : MonoBehaviour {
 
 	public int dialogueProgression = 0;
+	public int[] dialogueIndex;
+
 	public bool mom, end;
 
 	public GameObject gm;
@@ -17,7 +20,19 @@ public class NPCDialogueScript : MonoBehaviour {
 
 	public Text dialoguePanelContents, dialogueSpeakerName;
 
-	public int[] dialogueIndex;
+
+
+	public string[] dialogue1;
+	public string[] speaker1;
+
+	public string[] dialogue2;
+	public string[] speaker2;
+
+	public string[] dialogue3;
+	public string[] speaker3;
+
+	public string[] dialogue4;
+	public string[] speaker4;
 
 	public bool readyToStart;
 	public GameObject buttonPrompt;	
@@ -25,17 +40,17 @@ public class NPCDialogueScript : MonoBehaviour {
 	private bool _showing;
 	private string _text;
 
-	void Start(){
-		gm = GameObject.Find ("gm");
+	void OnEnable(){
+		gm = GameObject.Find ("persistentGM");
 		player = GameObject.Find ("Player").transform;
 		Setup ();
-		Dialoguer.events.onStarted += onStarted;
-		Dialoguer.events.onEnded += onEnded;
-		Dialoguer.events.onTextPhase += onTextPhase;
+//		Dialoguer.events.onStarted += onStarted;
+//		Dialoguer.events.onEnded += onEnded;
+//		Dialoguer.events.onTextPhase += onTextPhase;
 	}
 	
 	void Setup(){
-		dialoguePanels = gm.transform.GetChild (2).GetChild (0).gameObject;
+		dialoguePanels = gm.transform.GetChild (0).GetChild (0).gameObject;
 		dialoguePanelContents = dialoguePanels.transform.GetChild (1).GetChild (0).GetComponent<Text> ();
 		dialogueSpeakerName = dialoguePanels.transform.GetChild (0).GetChild (0).GetComponent<Text> ();
 	}
@@ -52,9 +67,12 @@ public class NPCDialogueScript : MonoBehaviour {
 		ShowPanels (false);
 		FreezePlayer (false);
 		Camera.main.GetComponent<customCameraControls> ().Dialogue (false);
-		if (dialogueProgression == 0) {
+		if (dialogueProgression == 0 && !mom) {
 			dialogueProgression ++;
-		} else if (dialogueProgression == 2 && mom) {
+		} else if (dialogueProgression == 1 && mom) {
+			dialogueProgression++;
+		}
+		else if (dialogueProgression == 2 && mom) {
 			SpawnBoat();
 		} if (end) {
 			SwitchBoat();
@@ -77,8 +95,69 @@ public class NPCDialogueScript : MonoBehaviour {
 	}
 
 	void ShowPanels (bool state){
-		GameObject.Find ("UI").transform.GetChild (0).gameObject.SetActive (state);
-		//dialoguePanels.SetActive (state);
+		//GameObject.Find ("UI").transform.GetChild (0).gameObject.SetActive (state);
+		dialoguePanels.SetActive (state);
+	}
+
+	void StartDialogue (int progression){
+		onStarted ();
+		ShowDialogue ();
+	}
+
+	void ShowDialogue(){
+		if (dialogueProgression == 0) {
+			dialoguePanelContents.text = dialogue1[dialogueIndex[0]];
+			dialogueSpeakerName.text = speaker1[dialogueIndex[0]];
+		}if (dialogueProgression == 1) {
+			dialoguePanelContents.text = dialogue2[dialogueIndex[1]];
+			dialogueSpeakerName.text = speaker2[dialogueIndex[1]];
+		}if (dialogueProgression == 2) {
+			dialoguePanelContents.text = dialogue3[dialogueIndex[2]];
+			dialogueSpeakerName.text = speaker3[dialogueIndex[2]];
+		}if (dialogueProgression == 3) {
+			dialoguePanelContents.text = dialogue4[dialogueIndex[3]];
+			dialogueSpeakerName.text = speaker4[dialogueIndex[3]];
+		}
+	}
+
+	void ContinueDialogue(){
+		if (!Ended ()) {
+			dialogueIndex[dialogueProgression]++;
+			ShowDialogue ();
+		} else {
+			EndDialogue();
+		}
+	}
+
+	void EndDialogue(){
+
+		onEnded ();
+	}
+
+	bool Ended(){
+		if (dialogueProgression == 0) {
+			if (dialogueIndex[dialogueProgression] < dialogue1.Length-1)
+				return false;
+			else
+				return true;
+		}else if (dialogueProgression == 1) {
+			if (dialogueIndex[dialogueProgression] < dialogue2.Length-1)
+				return false;
+			else
+				return true;
+		}else if (dialogueProgression == 2) {
+			if (dialogueIndex[dialogueProgression] < dialogue3.Length-1)
+				return false;
+			else
+				return true;
+		}else if (dialogueProgression == 3) {
+			if (dialogueIndex[dialogueProgression] < dialogue4.Length-1)
+				return false;
+			else
+				return true;
+		}
+		print ("dialogue logic error 1b");
+		return false;
 	}
 
 	// Update is called once per frame
@@ -93,12 +172,13 @@ public class NPCDialogueScript : MonoBehaviour {
 
 		if (readyToStart && Input.GetButtonDown ("X")) {
 			buttonPrompt.SetActive(false);
-			print ("starting " + (dialogueIndex[dialogueProgression]));
-			Dialoguer.StartDialogue(dialogueIndex[dialogueProgression], DialoguerCallback);
+			StartDialogue(dialogueProgression);
+			//print ("starting " + (dialogueIndex[dialogueProgression]));
+			//Dialoguer.StartDialogue(dialogueIndex[dialogueProgression], DialoguerCallback);
 		}
 
 		if (_showing && Input.GetButtonDown ("A")) {
-			Dialoguer.ContinueDialogue();
+			ContinueDialogue();
 		}
 	}
 
