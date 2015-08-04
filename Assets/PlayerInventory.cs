@@ -128,20 +128,20 @@ public class PlayerInventory : MonoBehaviour {
 		print ("getting mast seed");
 		haveMastSeed = true;
 		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 1;
-		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (0);//mastImage.enabled = true;
+		persInv.QuestCollect (0);//mastImage.enabled = true;
 	}
 	public void GetBoatSeed(){
 		print ("getting boat seed");
 		haveBoatSeed = true;
 		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().SetDialogue (3);// = 3;
 		print ("found mom");
-		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (1);//.enabled = true;
+		persInv.QuestCollect (1);//.enabled = true;
 	}public void GetIslandSeed(){
 		haveIslandSeed = true;
-		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (2);//islandImage.enabled = true;
+		persInv.QuestCollect (2);//islandImage.enabled = true;
 	}public void GetHouseSeed(){
 		haveHouseSeed = true;
-		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (3);//houseImage.enabled = true;
+		persInv.QuestCollect (3);//houseImage.enabled = true;
 	}
 
 }

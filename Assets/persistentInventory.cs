@@ -102,16 +102,16 @@ public class persistentInventory : MonoBehaviour {
 		print ("quest collect " + which);
 		if (which == 0) {
 			haveMast = 1;
-			mastImage.enabled = true;
+			mastImage.gameObject.SetActive(true);// = true;
 		}if (which == 1) {
 			haveBoat = 1;
-			boatImage.enabled = true;
+			boatImage.gameObject.SetActive(true);//
 		}if (which == 2) {
 			haveIsland = 1;
-			islandImage.enabled = true;
+			islandImage.gameObject.SetActive(true);//
 		}if (which == 3) {
 			haveHouse = 1;
-			houseImage.enabled = true;
+			houseImage.gameObject.SetActive(true);//
 		}
 	}
 

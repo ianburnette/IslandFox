@@ -15,7 +15,7 @@ public class levelManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level){
 		if (level == 0) {
-		//	Destroy (gameObject);
+			Destroy (gameObject);
 		}
 		if (level != 0 && level != 1) {
 			PlayerPrefs.SetInt("SavedLevel", level);

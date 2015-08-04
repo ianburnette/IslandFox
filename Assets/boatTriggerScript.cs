@@ -3,6 +3,8 @@ using System.Collections;
 
 public class boatTriggerScript : MonoBehaviour {
 
+	public GameObject originalLuna, boatLuna, endLuna;
+
 	public GameObject clouds;
 	public Rigidbody boat;
 	public Transform boatRef;
@@ -37,6 +39,10 @@ public class boatTriggerScript : MonoBehaviour {
 		boat.isKinematic = true;
 		boat.useGravity = false;
 		watch = false;
+		boatLuna.SetActive (false);
+		endLuna.SetActive (true);
+		endLuna.gameObject.transform.parent = null;
+		boat.GetComponent<boatCollider> ().enabled = true;
 	}
 
 	void OnTriggerEnter(Collider col){
@@ -47,7 +53,10 @@ public class boatTriggerScript : MonoBehaviour {
 	}
 
 	void TransportBoat(){
+		boat.GetComponent<boatCollider> ().enabled = false;
 		clouds.SetActive (true);
+		originalLuna.SetActive (false);
+		boatLuna.SetActive (true);
 		watch = false;
 		print ("transporting");
 		boat.isKinematic = false;

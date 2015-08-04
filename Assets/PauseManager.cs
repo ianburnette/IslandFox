@@ -136,8 +136,10 @@ public class PauseManager : MonoBehaviour {
 	}
 
 	void TogglePause(){
+		print ("pausing");
 		Time.timeScale = 1 - Time.timeScale;
 		paused = !paused;
+	//	eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
 		//PauseScreen(paused);
 	}
 

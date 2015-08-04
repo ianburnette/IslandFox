@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class mainMenuGM : MonoBehaviour {
 
+	public GameObject myEventSystem;
+
 	public bool savedGame;
 	public int savedLevel;
 
@@ -73,9 +75,12 @@ public class mainMenuGM : MonoBehaviour {
 	}
 
 	void LoadThisLevel (int thisLevel){
-		if (savedLevel != 1) {
-			GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
-			newPersInv.gameObject.transform.name = "persistentGM";
+		if (savedLevel != 1 && savedLevel != 0) {
+			myEventSystem.SetActive(false);
+			persInv.transform.GetChild(1).gameObject.SetActive(true);
+			persInv.GetComponent<PauseManager>().enabled = true;
+			persInv.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+
 		}
 		fadeScreen.SetActive (true);
 		persAud.SaveLevels();
@@ -85,9 +90,14 @@ public class mainMenuGM : MonoBehaviour {
 	public void Resume(){
 		if (savedGame) {
 			persAud.SaveLevels();
-			if (savedLevel != 1) {
-				GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
-				newPersInv.gameObject.transform.name = "persistentGM";
+			if (savedLevel != 1 && savedLevel != 0) {
+				myEventSystem.SetActive(false);
+				persInv.transform.GetChild(1).gameObject.SetActive(true);
+				persInv.GetComponent<PauseManager>().enabled = true;
+				persInv.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+//				print ("creating new");
+//				GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
+//				newPersInv.gameObject.transform.name = "persistentGM";
 			}
 			Application.LoadLevel (savedLevel);
 		}
@@ -102,6 +112,7 @@ public class mainMenuGM : MonoBehaviour {
 	}
 
 	public void ReallyNewGame(){
+		PlayerPrefs.DeleteAll ();
 		LoadThisLevel (1);
 	}
 
