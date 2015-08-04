@@ -5,11 +5,9 @@ public class VineModelSelector : MonoBehaviour {
 
 	public int before, after;
 	public GameObject straight, end, corner;
-
-	void OnLevelWasLoaded(){
-
-	}
-
+	public GameObject normalAnchor, altAnchor;
+	//public float vertOffset = .8f;
+	
 	// Use this for initialization
 	void Start () {
 		straight.SetActive (false);
@@ -18,11 +16,6 @@ public class VineModelSelector : MonoBehaviour {
 		if (before == 2) {
 			end.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void SetBefore(int lastBlockDir){
@@ -37,6 +30,7 @@ public class VineModelSelector : MonoBehaviour {
 			else if (before == 6)
 				end.transform.rotation = Quaternion.Euler(new Vector3(0,270,0));
 		}
+		print ("setbefore");
 	}
 
 	public void ChooseSprite (GameObject vineChunk){
@@ -47,7 +41,22 @@ public class VineModelSelector : MonoBehaviour {
 
 	}
 
+	public void SetAnchor(int dir){
+		if (dir == 2) { //moved up
+			//create sideways flower
+			altAnchor = Resources.Load("AnchorChunk") as GameObject;
+			GameObject anchor = (GameObject)GameObject.Instantiate(altAnchor, transform.position, Quaternion.identity);
+			anchor.transform.parent = transform;
+		} else {
+			//create normal flower
+			normalAnchor = Resources.Load("AnchorFlower") as GameObject;
+			GameObject anchor = (GameObject)GameObject.Instantiate(normalAnchor, transform.position + (Vector3.up * 1.3f), Quaternion.identity);
+			anchor.transform.parent = transform;
+		}
+	}
+
 	public void SetAfter(int nextBlockDir){
+		//print ("setafter");
 		after = nextBlockDir;
 		end.SetActive(false);
 		if (before == 3 && after == 4) { //straight to right

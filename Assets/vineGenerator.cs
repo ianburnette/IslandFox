@@ -3,7 +3,7 @@ using System.Collections;
 
 public class vineGenerator : MonoBehaviour {
 
-	public Transform vineSection, anchorFlower;
+	public Transform vineSection;
 	public int sections;
 	public Transform player;
 	public bool generating;
@@ -14,6 +14,8 @@ public class vineGenerator : MonoBehaviour {
 	public float vertMargin = 2f;
 	public float vertGrowDist = 3f;
 	bool spawnedAnchor;
+
+	bool placedAnchor= false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,15 +28,15 @@ public class vineGenerator : MonoBehaviour {
 			Generate();
 		}
 		if (sections <= 0 && !spawnedAnchor) {
-			SpawnAnchor();
+			//SpawnAnchor();
 			spawnedAnchor = true;
 		}
 		//CheckIfBelow ();
 	}
 
 	void SpawnAnchor(){
-		Transform anchorFlowerInstance = (Transform)Instantiate (anchorFlower, transform.position + (Vector3.up * anchorOffset), Quaternion.identity);
-		anchorFlowerInstance.parent = transform;
+//		Transform anchorFlowerInstance = (Transform)Instantiate (anchorFlower, transform.position + (Vector3.up * anchorOffset), Quaternion.identity);
+//		anchorFlowerInstance.parent = transform;
 	}
 
 	public bool CheckIfBelow(){
@@ -87,16 +89,42 @@ public class vineGenerator : MonoBehaviour {
 	}
 
 	void SetLastModel(Vector3 newPos){
-		if (newPos == Vector3.up * 2f) 
-			latestChunk.GetComponent<VineModelSelector>().SetAfter(2);
-		if (newPos == Vector3.left * 2f) 
-			latestChunk.GetComponent<VineModelSelector>().SetAfter(3);
-		if (newPos == Vector3.right * 2f) 
-			latestChunk.GetComponent<VineModelSelector>().SetAfter(4);
-		if (newPos == Vector3.forward * 2f) 
-			latestChunk.GetComponent<VineModelSelector>().SetAfter(5);
-		if (newPos == Vector3.back * 2f) 
-			latestChunk.GetComponent<VineModelSelector>().SetAfter(6);
+		if (newPos == Vector3.up * 2f) {
+			latestChunk.GetComponent<VineModelSelector> ().SetAfter (2);
+			if (!placedAnchor) {
+				latestChunk.GetComponent<VineModelSelector>().SetAnchor(2);
+				placedAnchor = true;
+			}
+		}
+		if (newPos == Vector3.left * 2f) {
+			latestChunk.GetComponent<VineModelSelector> ().SetAfter (3);
+			if (!placedAnchor) {
+				latestChunk.GetComponent<VineModelSelector>().SetAnchor(3);
+				placedAnchor = true;
+			}
+		}
+		if (newPos == Vector3.right * 2f) {
+			latestChunk.GetComponent<VineModelSelector> ().SetAfter (4);
+			if (!placedAnchor) {
+				latestChunk.GetComponent<VineModelSelector>().SetAnchor(4);
+				placedAnchor = true;
+			}
+		}
+		if (newPos == Vector3.forward * 2f) {
+			latestChunk.GetComponent<VineModelSelector> ().SetAfter (5);
+			if (!placedAnchor) {
+				latestChunk.GetComponent<VineModelSelector>().SetAnchor(5);
+				placedAnchor = true;
+			}
+		}
+		if (newPos == Vector3.back * 2f) {
+			latestChunk.GetComponent<VineModelSelector> ().SetAfter (6);
+			if (!placedAnchor) {
+				latestChunk.GetComponent<VineModelSelector>().SetAnchor(6);
+				placedAnchor = true;
+			}
+		}
+
 	}
 
 	void OnTriggerEnter(Collider col){

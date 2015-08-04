@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bd43cf51f80665743930c159694a5355
-timeCreated: 1438622312
+timeCreated: 1438697727
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -43,6 +43,7 @@ TextureImporter:
     21300072: AdultFox_36
     21300074: AdultFox_37
     21300076: AdultFox_38
+    21300078: AdultFox_39
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -106,7 +107,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_2
       rect:
@@ -116,7 +117,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_3
       rect:
@@ -126,7 +127,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_4
       rect:
@@ -156,7 +157,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_7
       rect:
@@ -166,7 +167,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_8
       rect:
@@ -176,7 +177,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_9
       rect:
@@ -186,7 +187,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_10
       rect:
@@ -196,7 +197,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_11
       rect:
@@ -206,7 +207,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_12
       rect:
@@ -216,7 +217,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_13
       rect:
@@ -226,7 +227,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_14
       rect:
@@ -236,7 +237,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_15
       rect:
@@ -246,7 +247,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_16
       rect:
@@ -256,7 +257,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_17
       rect:
@@ -266,7 +267,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_18
       rect:
@@ -276,7 +277,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_19
       rect:
@@ -286,7 +287,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_20
       rect:
@@ -296,7 +297,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_21
       rect:
@@ -306,7 +307,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_22
       rect:
@@ -316,7 +317,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_23
       rect:
@@ -326,7 +327,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_24
       rect:
@@ -336,7 +337,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_25
       rect:
@@ -346,7 +347,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_26
       rect:
@@ -356,7 +357,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_27
       rect:
@@ -366,7 +367,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_28
       rect:
@@ -376,7 +377,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_29
       rect:
@@ -386,7 +387,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_30
       rect:
@@ -396,7 +397,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_31
       rect:
@@ -406,7 +407,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_32
       rect:
@@ -416,7 +417,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_33
       rect:
@@ -426,7 +427,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_34
       rect:
@@ -436,7 +437,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_35
       rect:
@@ -446,7 +447,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_36
       rect:
@@ -456,7 +457,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_37
       rect:
@@ -466,7 +467,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AdultFox_38
       rect:
@@ -476,7 +477,17 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AdultFox_39
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 96
+        width: 30
+        height: 30
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
