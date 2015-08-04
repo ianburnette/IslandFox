@@ -30,9 +30,7 @@ public class mainMenuGM : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("SaveLevel") != 0) {
 			savedGame = true;
 			savedLevel = PlayerPrefs.GetInt("SaveLevel");
-			if (PlayerPrefs.GetInt ("SaveLevel") != 1) {
-				GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
-			}
+
 		} else {
 			savedGame = false;
 		}
@@ -75,6 +73,10 @@ public class mainMenuGM : MonoBehaviour {
 	}
 
 	void LoadThisLevel (int thisLevel){
+		if (savedLevel != 1) {
+			GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
+			newPersInv.gameObject.transform.name = "persistentGM";
+		}
 		fadeScreen.SetActive (true);
 		persAud.SaveLevels();
 		Application.LoadLevel (thisLevel);
@@ -83,6 +85,10 @@ public class mainMenuGM : MonoBehaviour {
 	public void Resume(){
 		if (savedGame) {
 			persAud.SaveLevels();
+			if (savedLevel != 1) {
+				GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
+				newPersInv.gameObject.transform.name = "persistentGM";
+			}
 			Application.LoadLevel (savedLevel);
 		}
 	}

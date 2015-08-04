@@ -21,7 +21,11 @@ public class Coin : MonoBehaviour
 	public Vector3 rotationGain = new Vector3(10, 20, 10);	//added rotation when player gets near coin 
 	public float startSpeed = 3f;							//how fast coin moves toward player when they get near
 	public float speedGain = 0.2f;							//how fast coin accelerates toward player when they're near
-	
+
+	public float jumpSpeed;
+
+	public bool zooming, zoomed;
+
 	private bool collected;
 	public Transform player;
 	private TriggerParent triggerParent;	//this is a utility class, that lets us check if the player is close to the coins "bounds sphere trigger"
@@ -57,9 +61,20 @@ public class Coin : MonoBehaviour
 	
 	void Start()
 	{
+	
 		player = GameObject.Find("Player").transform;
 		if (seedType == 0) {
 			collected = true;
+		}
+	}
+
+	void OnEnable(){
+		//transform.position = Vector3.Lerp (transform.position, transform.position + (Vector3.up * 2f), jumpSpeed * Time.deltaTime);
+		if (seedType == 0) {
+			iTween.MoveBy (gameObject, iTween.Hash (
+			"y", 3,
+			"time", 1f
+			));
 		}
 	}
 	
@@ -71,12 +86,23 @@ public class Coin : MonoBehaviour
 		if(triggerParent.collided)
 			collected = true;
 		
-		if (collected)
-		{
+		if (collected && !zoomed && seedType == 0) {
+			Invoke ("Zoom", 2f);
+			zoomed = true;
+
+		} else if (collected && !zoomed && seedType != 0) {
+			Zoom ();
+			zoomed = true;
+		}
+		if (zooming) {
 			startSpeed += speedGain;
 			rotation += rotationGain;
 			transform.position = Vector3.Lerp (transform.position, player.position, startSpeed * Time.deltaTime);
-		}	
+		}
+	}
+
+	void Zoom(){
+		zooming = true;
 	}
 	
 	//give player coin when it touches them

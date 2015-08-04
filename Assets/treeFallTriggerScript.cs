@@ -4,6 +4,7 @@ using System.Collections;
 public class treeFallTriggerScript : MonoBehaviour {
 
 	public Rigidbody[] rbsToActivate;
+	public GameObject[] particles;
 
 	// Use this for initialization
 	void Start () {
@@ -24,5 +25,10 @@ public class treeFallTriggerScript : MonoBehaviour {
 				}
 			}
 		}
+
+		foreach (GameObject part in particles) {
+			part.SetActive(true);
+		}
+
 	}
 }

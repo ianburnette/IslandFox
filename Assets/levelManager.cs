@@ -13,8 +13,13 @@ public class levelManager : MonoBehaviour {
 	public bool changeLevel;
 	public int levelToLoad;
 
-	void OnLevelWasLoaded(){
-
+	void OnLevelWasLoaded(int level){
+		if (level == 0) {
+		//	Destroy (gameObject);
+		}
+		if (level != 0 && level != 1) {
+			PlayerPrefs.SetInt("SavedLevel", level);
+		}
 	}
 
 	void Unfade(){

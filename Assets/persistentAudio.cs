@@ -6,7 +6,14 @@ public class persistentAudio : MonoBehaviour {
 	public float musicLevel;
 	public float masterVolume;
 	public float musicMult = 2f;
+	public float currentMult;
 	//public AudioListener camListener;
+
+	public float fadeTime;
+
+	public AudioClip mainClip, homeIsland, targetClip;
+
+	public AudioClip currentClip;
 
 	public AudioSource musicSource;
 
@@ -17,6 +24,8 @@ public class persistentAudio : MonoBehaviour {
 		masterVolume = PlayerPrefs.GetFloat ("masterVolume");
 		GameObject.DontDestroyOnLoad (gameObject);
 		musicSource = GetComponent<AudioSource> ();
+		currentClip = mainClip;
+		currentMult = musicMult;
 	}
 
 	public void SaveLevels(){
@@ -26,12 +35,28 @@ public class persistentAudio : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level){
-	//	camListener = Camera.main.GetComponent<AudioListener>();
+		if (level == 2) {
+			targetClip = homeIsland;
+		}if (level == 3) {
+			targetClip = mainClip;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		musicSource.volume = musicLevel * musicMult;
+		musicSource.volume = musicLevel * currentMult;
 		AudioListener.volume = masterVolume;
+		if (currentClip != targetClip) {
+			currentMult -= fadeTime * Time.deltaTime;
+			if (currentMult <= 0) {
+
+				currentClip = targetClip;
+				musicSource.clip = currentClip;
+				musicSource.Play ();
+			}
+		} else if (currentMult < musicMult) {
+			//print ("increasing");
+			currentMult += fadeTime * Time.deltaTime;
+		}
 	}
 }

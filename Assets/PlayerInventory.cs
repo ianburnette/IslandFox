@@ -76,7 +76,7 @@ public class PlayerInventory : MonoBehaviour {
 		vineGen = newVine.GetComponent<vineGenerator> ();
 		vineGen.player = transform;
 		currentVine = newVine.transform;
-
+		transform.position = new Vector3 (currentVine.position.x, transform.position.y, currentVine.position.z);
 		currentVineUI.gameObject.SetActive(true);
 		print ("placing");
 		vineRemainingSlider.maxValue = vineGen.sections; 
@@ -128,15 +128,20 @@ public class PlayerInventory : MonoBehaviour {
 		print ("getting mast seed");
 		haveMastSeed = true;
 		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 1;
+		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (0);//mastImage.enabled = true;
 	}
 	public void GetBoatSeed(){
 		print ("getting boat seed");
 		haveBoatSeed = true;
-		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().dialogueProgression = 3;
+		GameObject.Find ("mom").GetComponent<NPCDialogueScript> ().SetDialogue (3);// = 3;
+		print ("found mom");
+		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (1);//.enabled = true;
 	}public void GetIslandSeed(){
 		haveIslandSeed = true;
+		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (2);//islandImage.enabled = true;
 	}public void GetHouseSeed(){
 		haveHouseSeed = true;
+		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().QuestCollect (3);//houseImage.enabled = true;
 	}
 
 }

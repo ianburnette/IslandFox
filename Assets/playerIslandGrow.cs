@@ -8,6 +8,8 @@ public class playerIslandGrow : MonoBehaviour {
 
 	public bool haveBoatSeed, haveIslandSeed, haveHouseSeed;
 
+
+
 	public GameObject seedPlantingHUD, vineHUD;
 	public Image currentSeedImage;
 	public Text currentCount1, currentCount2;
@@ -37,6 +39,13 @@ public class playerIslandGrow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		persInv = GameObject.Find ("persistentGM").GetComponent<persistentInventory> ();
+	//	seedPlantingHUD = persInv.gameObject
+
+		vineHUD = persInv.transform.GetChild (0).GetChild (1).gameObject;
+		seedPlantingHUD =persInv.transform.GetChild (0).GetChild (5).gameObject;
+		currentSeedImage = seedPlantingHUD.transform.GetChild (0).GetChild (3).GetComponent<Image>();
+		currentCount1 = seedPlantingHUD.transform.GetChild (0).GetChild (1).GetComponent<Text>();
+		currentCount2 = seedPlantingHUD.transform.GetChild (0).GetChild (2).GetComponent<Text>();
 	}
 
 	void OnEnable(){

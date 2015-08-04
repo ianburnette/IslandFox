@@ -8,6 +8,8 @@ public class NPCDialogueScript : MonoBehaviour {
 	public int dialogueProgression = 0;
 	public int[] dialogueIndex;
 
+	bool hardSet;
+
 	public bool mom, end;
 
 	public GameObject gm;
@@ -72,7 +74,7 @@ public class NPCDialogueScript : MonoBehaviour {
 		} else if (dialogueProgression == 1 && mom) {
 			dialogueProgression++;
 		}
-		else if (dialogueProgression == 2 && mom) {
+		else if (dialogueProgression == 3 && mom) {
 			SpawnBoat();
 		} if (end) {
 			SwitchBoat();
@@ -160,8 +162,17 @@ public class NPCDialogueScript : MonoBehaviour {
 		return false;
 	}
 
+	public void SetDialogue(int setTo){
+		print ("Setting to " + setTo);
+		dialogueProgression = setTo;
+		hardSet = true;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		if (hardSet) {
+			dialogueProgression = 3;
+		}
 		if (readyToStart && buttonPrompt.activeSelf == false && !_showing) {
 			buttonPrompt.SetActive(true);// = true;
 		}if (!readyToStart && buttonPrompt.activeSelf) {
@@ -186,7 +197,7 @@ public class NPCDialogueScript : MonoBehaviour {
 		buttonPrompt.SetActive (true);
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnTriggerStay(Collider col){
 		if (col.tag == "Player") {
 			player = col.transform;
 			readyToStart = true;

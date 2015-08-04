@@ -100,6 +100,7 @@ public class PauseManager : MonoBehaviour {
 				PauseScreen(true);
 			}else if (paused && inventory){
 				ToggleInventory(false);
+				PauseScreen(true);
 			}
 		}
 		if (Input.GetButtonDown ("Inventory")) {

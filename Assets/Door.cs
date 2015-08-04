@@ -8,7 +8,7 @@ public class Door : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		levelMan = GameObject.Find ("persistentGM").GetComponent<levelManager> ();
 	}
 	
 	// Update is called once per frame

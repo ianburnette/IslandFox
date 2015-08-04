@@ -29,7 +29,9 @@ public class endGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		levelMan = GameObject.Find ("persistentGM").GetComponent<levelManager> ();
+		vineUI = levelMan.gameObject.transform.GetChild (0).GetChild (1).gameObject;
+		fadeImage = levelMan.gameObject.transform.GetChild (0).GetChild (2).GetChild (0).gameObject.GetComponent<Image> ();
 	}
 	
 	// Update is called once per frame

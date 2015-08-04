@@ -5,6 +5,7 @@ public class setupFallSequenceTrigger : MonoBehaviour {
 
 	public GameObject finalDoor;
 	public Rigidbody finalPathRB;
+	public GameObject finalParticles;
 	public GameObject[] checkpoints, fallTriggers;
 	public GameObject fallAndDie;
 	public treeFallTriggerScript boatTrigger;
@@ -30,6 +31,7 @@ public class setupFallSequenceTrigger : MonoBehaviour {
 			fallAndDie.SetActive(true);
 			boatTrigger.enabled = true;
 			boatTrigger.rbsToActivate[0] = finalPathRB;
+			boatTrigger.particles[0] = finalParticles;
 			finalDoor.SetActive(true);
 		}
 	}

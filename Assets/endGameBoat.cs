@@ -3,6 +3,7 @@ using System.Collections;
 
 public class endGameBoat : MonoBehaviour {
 
+	public GameObject persGM;
 	public GameObject UIprompt;
 	public Animator anim;
 	public GameObject player;
@@ -22,6 +23,9 @@ public class endGameBoat : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
 		transform.rotation = Quaternion.Euler (new Vector3 (270, 0, 0));
+		persGM = GameObject.Find ("persistentGM");
+		vineInventory = persGM.transform.GetChild (0).GetChild (1).gameObject;
+		plantingInventory =persGM.transform.GetChild (0).GetChild (5).gameObject;
 	//	anim = GetComponent<Animator> ();
 	}
 	
@@ -78,6 +82,7 @@ public class endGameBoat : MonoBehaviour {
 	}
 
 	void StartAnimation(){
+		vineInventory.SetActive (false);
 		setPlayerLoc = true;
 		anim.SetTrigger ("grow");
 	}

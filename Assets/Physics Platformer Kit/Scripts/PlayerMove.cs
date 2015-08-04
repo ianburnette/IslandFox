@@ -279,7 +279,7 @@ public class PlayerMove : MonoBehaviour
 			if(Physics.Raycast(check.position, Vector3.down, out hit, dist + 0.05f))
 			{
 				//print (hit.transform.tag);
-				if(!hit.transform.GetComponent<Collider>().isTrigger)
+				if(!hit.transform.GetComponent<Collider>().isTrigger && hit.transform.tag != "Checkpoint"&& hit.transform.tag != "NPC")
 				{
 					//slope control
 					slope = Vector3.Angle (hit.normal, Vector3.up);

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 //[ExecuteInEditMode]
 public class persistentInventory : MonoBehaviour {
 
+	public Vector3 gmPos;
+
 	public Text[] seedInventory;
 
 	public Text vineInventory, hudVineCount1, hudVineCount2;
@@ -21,9 +23,15 @@ public class persistentInventory : MonoBehaviour {
 	public Slider vineRemainingSlider;
 	public Text vineUIQuant, vineUIShadow;
 
+	public int haveMast, haveBoat, haveIsland, haveHouse;
+
+	public Image mastImage, boatImage, islandImage, houseImage;
+
 	void OnEnable(){
 		LoadInventory ();
-		FindInventoryAssociations ();
+		if (Application.loadedLevel!=0)
+			FindInventoryAssociations ();	
+		transform.position = gmPos;
 	}
 
 	// Use this for initialization
@@ -56,6 +64,10 @@ public class persistentInventory : MonoBehaviour {
 		PlayerPrefs.SetInt ("rock", rock);
 		PlayerPrefs.SetInt ("mushroom", mushroom);
 		PlayerPrefs.SetInt ("barrel", barrel);
+		PlayerPrefs.SetInt ("mast", haveMast);
+		PlayerPrefs.SetInt ("boat", haveBoat);
+		PlayerPrefs.SetInt ("island", haveIsland);
+		PlayerPrefs.SetInt ("house", haveHouse);
 	}
 
 	public void LoadInventory(){
@@ -71,6 +83,36 @@ public class persistentInventory : MonoBehaviour {
         rock=PlayerPrefs.GetInt ("rock");//, rock);
         mushroom=PlayerPrefs.GetInt ("mushroom");//, mushroom);
 		barrel=PlayerPrefs.GetInt("barrel");//, barrel);
+		haveMast=PlayerPrefs.GetInt ("mast");//, stump);
+		haveBoat=PlayerPrefs.GetInt ("boat");//, rock);
+		haveIsland=PlayerPrefs.GetInt ("island");//, mushroom);
+		haveHouse=PlayerPrefs.GetInt("house");//, barrel);
+		if (haveMast == 1)
+			QuestCollect (0);
+		if (haveBoat == 1) 
+			QuestCollect (1);
+		if (haveIsland == 1)
+			QuestCollect (2);
+		if (haveHouse == 1) 
+			QuestCollect (3);
+		
+	}
+
+	public void QuestCollect (int which){
+		print ("quest collect " + which);
+		if (which == 0) {
+			haveMast = 1;
+			mastImage.enabled = true;
+		}if (which == 1) {
+			haveBoat = 1;
+			boatImage.enabled = true;
+		}if (which == 2) {
+			haveIsland = 1;
+			islandImage.enabled = true;
+		}if (which == 3) {
+			haveHouse = 1;
+			houseImage.enabled = true;
+		}
 	}
 
 	void FindInventoryAssociations(){
