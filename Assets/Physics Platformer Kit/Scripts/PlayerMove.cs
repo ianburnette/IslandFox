@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
 	public bool haveCameraFocus = true;
 	private Vector3 camFocusLocation;
 	public GameObject smokePuff;
+	public float debugh, debugv;
 
 	public PlayerInventory inventory;
 	public playerIslandGrow islandGrower;
@@ -123,6 +124,8 @@ public class PlayerMove : MonoBehaviour
 		//get movement input, set direction to move in
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
+		debugh = h;
+		debugv = v;
 		//only apply vertical input to movemement, if player is not sidescroller
 		if(!sidescroller)
 			direction = (screenMovementForward * v) + (screenMovementRight * h);

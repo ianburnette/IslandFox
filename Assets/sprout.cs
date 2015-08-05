@@ -10,14 +10,15 @@ public class sprout : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GetComponent<SpriteRenderer> ().enabled = false;
-		Invoke ("ShowSprout", waitTime);
+	//	Invoke ("ShowSprout", waitTime);
+		ShowSprout ();
 		inventory = GameObject.Find ("persistentGM").GetComponent<persistentInventory> ();
 	}
 	
 	// Update is called once per frame
 	void ShowSprout () {
 		GetComponent<SpriteRenderer> ().enabled = true;
-		InvokeRepeating ("CheckToCreate", waitTime, waitTime);
+		InvokeRepeating ("CheckToCreate", waitTime * 2, waitTime);
 	}
 
 	void CheckToCreate(){

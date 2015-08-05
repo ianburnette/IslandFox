@@ -13,6 +13,7 @@ public class Resetter : MonoBehaviour {
 		foreach (Transform check in checkpoints) {
 			check.GetComponent<CheckpointSingle>().resetterScript = this;
 		}
+		player = GameObject.Find ("Player").transform;
 	}
 	
 	// Update is called once per frame

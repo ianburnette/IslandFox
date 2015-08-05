@@ -6,19 +6,21 @@ public class customCameraControls : MonoBehaviour {
 	public Transform player, camFocus;
 
 	public Vector3[] camVectors;
+	public Vector3[] camRotations;
 	public int cameraPosition; //1=close, 2=med, 3=far
 	public int cameraFocusDirection = 3; //1=n, 2=s, 3=w, 4=e
 	public float posChangeTime;
 	public float currentCamHeight, currentCamDist, cameraHeightModifier;
 	public bool inDialogue;
-	private int stateToReturnTo = 2;
+	public int stateToReturnTo = 2;
 	public float heightModBase = 2f;
 	public float camMoveSpeed, camDistMod;
+	public Vector3 currentCamRotation;
 
 	// Use this for initialization
 	void Start () {
-		SetCameraPosition (3);
-		stateToReturnTo = 3;
+		SetCameraPosition (2);
+		stateToReturnTo = 2;
 	}
 	
 	// Update is called once per frame
@@ -35,6 +37,8 @@ public class customCameraControls : MonoBehaviour {
 			camMoveSpeed * Time.deltaTime
 
 		);
+
+		transform.rotation = Quaternion.Euler (Vector3.Lerp (transform.rotation.eulerAngles, currentCamRotation, camMoveSpeed * Time.deltaTime));
 
 
 	}
@@ -66,16 +70,24 @@ public class customCameraControls : MonoBehaviour {
 	void GetCameraInput(){
 		if (!inDialogue) {
 			if (Input.GetButtonDown("CamIn")){
-				if (stateToReturnTo == 1){
-					stateToReturnTo = 3;
-				}else{
+				if (stateToReturnTo > 1 ){
 					stateToReturnTo--;
+//					if (stateToReturnTo == 2 && transform.position ==camFocus.position +  camVectors[2]){
+//						stateToReturnTo--;
+//					}if (stateToReturnTo == 3 && transform.position ==camFocus.position +  camVectors[3]){
+//						stateToReturnTo--;
+//					}
 				}
 				SetCameraPosition(stateToReturnTo);
-			}if (Input.GetButtonDown("CamOut")){
-				if (stateToReturnTo == 3){
-					stateToReturnTo = 1;
-				}else{
+			}
+
+			if (Input.GetButtonDown("CamOut")){
+				if (stateToReturnTo < 3){
+//					if (stateToReturnTo == 2 && transform.position == camFocus.position + camVectors[2]){
+//						stateToReturnTo++;
+//					}if (stateToReturnTo == 1 && transform.position == camFocus.position + camVectors[1]){
+//						stateToReturnTo++;
+//					}
 					stateToReturnTo++;
 				}
 				SetCameraPosition(stateToReturnTo);
@@ -110,6 +122,12 @@ public class customCameraControls : MonoBehaviour {
 			"time", posChangeTime,
 			"onupdate", "SetZ"
 			));
+		iTween.ValueTo (gameObject, iTween.Hash(
+			"from", currentCamRotation,
+			"to", camRotations [pos-1],
+			"time", posChangeTime,
+			"onupdate", "SetRot"
+			));
 	}
 
 	void SetY(float newY){
@@ -117,5 +135,8 @@ public class customCameraControls : MonoBehaviour {
 	}
 	void SetZ(float newZ){
 		currentCamDist = newZ;
+	}
+	void SetRot(Vector3 newRot){
+		currentCamRotation = newRot;
 	}
 }

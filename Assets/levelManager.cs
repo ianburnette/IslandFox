@@ -13,9 +13,16 @@ public class levelManager : MonoBehaviour {
 	public bool changeLevel;
 	public int levelToLoad;
 
+	void Awake(){
+		if (FindObjectsOfType(GetType()).Length > 1)
+		{
+			Destroy(gameObject);
+		}
+	}
+
 	void OnLevelWasLoaded(int level){
 		if (level == 0) {
-			Destroy (gameObject);
+			//Destroy (gameObject);
 		}
 		if (level != 0 && level != 1) {
 			PlayerPrefs.SetInt("SavedLevel", level);
@@ -35,6 +42,12 @@ public class levelManager : MonoBehaviour {
 		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().SaveInventory ();
 		if (newLevel == 0) {
 			Destroy (GameObject.Find ("persistentAudioGM"));
+			GameObject.Find ("EventSystem").SetActive (false);
+			print ("deactivating events");
+			GameObject.Find ("HUDInventoryCanvas").SetActive (false);
+			GetComponent<PauseManager> ().enabled = false;
+		} else {
+			GetComponent<PauseManager>().enabled=true;
 		}
 
 	}

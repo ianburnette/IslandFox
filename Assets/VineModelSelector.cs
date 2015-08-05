@@ -36,7 +36,7 @@ public class VineModelSelector : MonoBehaviour {
 	public void ChooseSprite (GameObject vineChunk){
 		int rand = Random.Range (0, 3);
 		print ("vine rand is " + rand);
-	//	vineChunk.transform.GetChild(rand).gameObject.SetActive(true);
+		vineChunk.transform.GetChild(rand).gameObject.SetActive(true);
 	
 
 	}

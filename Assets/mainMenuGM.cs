@@ -18,6 +18,7 @@ public class mainMenuGM : MonoBehaviour {
 	public GameObject[] screenButtons;
 
 	public EventSystem eventSystem;
+	public GameObject gmEventSystem;
 
 	public Button resume, newgame;
 
@@ -26,6 +27,14 @@ public class mainMenuGM : MonoBehaviour {
 
 	public persistentAudio persAud;
 	public GameObject persInv;
+
+	public Vector3 forceToPush;
+	public float forceMult;
+
+	public Rigidbody moveTut, pauseTut, invTut, interactTut, seedTut, cancelTut, jumpTut, camTut;
+	public bool boolMove, boolPause, boolInv, boolInteract, boolSeed, boolCancel, boolJump, boolCam;
+
+	public bool controlTut;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +46,7 @@ public class mainMenuGM : MonoBehaviour {
 			savedGame = false;
 		}
 		persAud = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
+		persInv = GameObject.Find ("persistentGM");
 	}
 
 	public void DecAud(int which){
@@ -65,6 +75,18 @@ public class mainMenuGM : MonoBehaviour {
 		}
 		UpdateSliders ();
 //		print (PlayerPrefs.GetInt("SaveLevel"));
+		if (boolMove && boolPause && boolInv && boolInteract && boolSeed && boolCancel && boolJump && boolCam) {
+			boolMove  = false;boolPause = false;boolInv = false; boolInteract = false; boolSeed = false; boolCancel = false; boolJump = false; boolCam = false;// false;
+			Invoke ("BeginAfterTut", 1f);
+	
+		}
+		if (controlTut) {
+			ControlTutorial();
+		}
+	}
+
+	void BeginAfterTut(){
+		LoadThisLevel(1);
 	}
 
 	void UpdateSliders(){
@@ -82,6 +104,9 @@ public class mainMenuGM : MonoBehaviour {
 			persInv.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
 
 		}
+		myEventSystem.SetActive(false);
+		gmEventSystem.SetActive (true);
+		persInv.GetComponent<PauseManager>().enabled = true;
 		fadeScreen.SetActive (true);
 		persAud.SaveLevels();
 		Application.LoadLevel (thisLevel);
@@ -107,13 +132,63 @@ public class mainMenuGM : MonoBehaviour {
 		if (savedGame) {
 			ShowScreen (2);
 		} else {
-			LoadThisLevel(1);
+			ShowScreen(5);
+			Invoke ("StartTut", .1f);
+			//LoadThisLevel(1);
 		}
+	}
+
+	public void Launch (Rigidbody toLaunch){
+		toLaunch.isKinematic = false;
+		toLaunch.AddForce (forceToPush * forceMult);
+		toLaunch.AddTorque (forceToPush * forceMult);
+		toLaunch.gameObject.GetComponent<Animator> ().SetTrigger ("shrink");
+	
+	}
+	
+	public void ControlTutorial(){
+		if (Input.GetButtonDown ("X")) {
+			boolInteract = true;
+			Launch(interactTut);
+		}if (Input.GetButtonDown ("Y")) {
+			boolSeed = true;
+			Launch(seedTut);
+		}if (Input.GetButtonDown ("B")) {
+			boolCancel = true;
+			Launch(cancelTut);
+		}if (Input.GetButtonDown ("A")) {
+			boolJump = true;
+			Launch(jumpTut);
+		}if (Input.GetButtonDown ("Pause")) {
+			boolPause = true;
+			Launch(pauseTut);
+		}if (Input.GetButtonDown ("Inventory")) {
+			boolInv = true;
+			Launch(invTut);
+		}if (Input.GetButtonDown ("CamIn") || Input.GetButtonDown("CamOut")) {
+			boolCam = true;
+			Launch(camTut);
+		}if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
+		    boolMove = true;
+			Launch(moveTut);
+		}
+
+
+
+
+
 	}
 
 	public void ReallyNewGame(){
 		PlayerPrefs.DeleteAll ();
-		LoadThisLevel (1);
+		ShowScreen(5);
+		Invoke ("StartTut", .1f);
+		//controlTut = true;
+		//LoadThisLevel (1);
+	}
+
+	void StartTut(){
+		controlTut = true;
 	}
 
 	public void Back(int toWhere){
@@ -143,7 +218,12 @@ public class mainMenuGM : MonoBehaviour {
 		if (screenToShow == 1 && !savedGame) {
 			resume.interactable = false;
 			screenButtons[1] = newgame.gameObject;
+		}if (screenToShow != 5) {
+			eventSystem.SetSelectedGameObject (screenButtons[screenToShow] ,new BaseEventData(eventSystem));
 		}
-		eventSystem.SetSelectedGameObject (screenButtons[screenToShow] ,new BaseEventData(eventSystem));
+
+		if (screenToShow == 5) {
+			title.SetActive(false);
+		}
 	}
 }

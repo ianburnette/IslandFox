@@ -46,6 +46,8 @@ ModelImporter:
     100076: walkway2grass
     100078: walkway3grass
     100080: walkway4Grass
+    100082: windows
+    100084: windows_001
     400000: Cube
     400002: Grandparents
     400004: Grandparents_MeshPart0
@@ -87,6 +89,8 @@ ModelImporter:
     400076: walkway2grass
     400078: walkway3grass
     400080: walkway4Grass
+    400082: windows
+    400084: windows_001
     2300000: Cube
     2300002: Grandparents_MeshPart0
     2300004: Grandparents_MeshPart1
@@ -126,6 +130,8 @@ ModelImporter:
     2300072: walkway2grass
     2300074: walkway3grass
     2300076: walkway4Grass
+    2300078: windows
+    2300080: windows_001
     3300000: Cube
     3300002: Grandparents_MeshPart0
     3300004: Grandparents_MeshPart1
@@ -165,6 +171,8 @@ ModelImporter:
     3300072: walkway2grass
     3300074: walkway3grass
     3300076: walkway4Grass
+    3300078: windows
+    3300080: windows_001
     4300000: walkway
     4300002: Grandparents_MeshPart0
     4300004: Grandparents_MeshPart1
@@ -204,6 +212,8 @@ ModelImporter:
     4300072: branch1leaves
     4300074: branches3Leaves
     4300076: walkway4Grass
+    4300078: windows_001
+    4300080: windows
     6400000: branch1
     6400002: branch1leaves
     6400004: branch2
@@ -235,6 +245,8 @@ ModelImporter:
     6400056: walkway3grass
     6400058: walkway4
     6400060: walkway4Grass
+    6400062: windows
+    6400064: windows_001
     7400000: Default Take
     9500000: //RootNode
   materials:

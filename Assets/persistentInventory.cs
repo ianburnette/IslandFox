@@ -11,7 +11,7 @@ public class persistentInventory : MonoBehaviour {
 
 	public Text vineInventory, hudVineCount1, hudVineCount2;
 
-	public GameObject inventoryCanvas;
+	public GameObject inventoryCanvas, vineHUD;
 
 	public int vineCount;
 	public int 	roundTree, pointyTree, bush, 
@@ -31,6 +31,7 @@ public class persistentInventory : MonoBehaviour {
 		LoadInventory ();
 		if (Application.loadedLevel!=0)
 			FindInventoryAssociations ();	
+
 		transform.position = gmPos;
 	}
 
@@ -158,6 +159,15 @@ public class persistentInventory : MonoBehaviour {
 		print ("level loaded " + Application.loadedLevel);
 
 		FindInventoryAssociations ();
+		if (level == 0) {
+			vineHUD.SetActive(false);
+		}
+		if (level == 1) {
+			vineHUD.SetActive(false);
+		}
+		if (level == 2) {
+			vineHUD.SetActive(true);
+		}
 
 //		if (level == 2) {
 //			foreach (GameObject prop in level1Objects){

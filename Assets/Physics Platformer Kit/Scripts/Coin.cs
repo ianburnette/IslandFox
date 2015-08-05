@@ -87,7 +87,7 @@ public class Coin : MonoBehaviour
 			collected = true;
 		
 		if (collected && !zoomed && seedType == 0) {
-			Invoke ("Zoom", 2f);
+			Invoke ("Zoom", .5f);
 			zoomed = true;
 
 		} else if (collected && !zoomed && seedType != 0) {
