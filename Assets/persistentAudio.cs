@@ -9,9 +9,11 @@ public class persistentAudio : MonoBehaviour {
 	public float currentMult;
 	//public AudioListener camListener;
 
+	public bool muted;
+
 	public float fadeTime;
 
-	public AudioClip mainClip, homeIsland, targetClip;
+	public AudioClip mainMenu, level1, level2, level3, level4A, level4B, level5A, level5B, level5C, targetClip;
 
 	public AudioClip currentClip;
 
@@ -20,11 +22,18 @@ public class persistentAudio : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//if (GameObject.FindGameObjectsWithTag
-		musicLevel = PlayerPrefs.GetFloat ("musicLevel");
-		masterVolume = PlayerPrefs.GetFloat ("masterVolume");
+
+		if (PlayerPrefs.GetFloat ("musicLevel") != 0) {
+			musicLevel = PlayerPrefs.GetFloat ("musicLevel");
+		}if (PlayerPrefs.GetFloat ("masterVolume") != 0) {
+			masterVolume = PlayerPrefs.GetFloat ("masterVolume");
+		}
+
+
+
 		GameObject.DontDestroyOnLoad (gameObject);
 		musicSource = GetComponent<AudioSource> ();
-		currentClip = mainClip;
+		currentClip = mainMenu;
 		currentMult = musicMult;
 	}
 
@@ -35,10 +44,31 @@ public class persistentAudio : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level){
+		if (level == 0) {
+			targetClip = mainMenu;
+		}if (level == 1) {
+			targetClip = level1;
+		}
 		if (level == 2) {
-			targetClip = homeIsland;
+			targetClip = level2;
 		}if (level == 3) {
-			targetClip = mainClip;
+			targetClip = level3;
+		}if (level == 4) {
+			targetClip = level4A;
+		}if (level == 5) {
+			targetClip = level5A;
+		}
+	}
+
+	public void ToggleMute(){
+		muted = !muted;
+	}
+
+	void ChangeSong(int songToChange){
+		if (songToChange == 6) {
+			targetClip = level5B;
+		} else if (songToChange == 7) {
+			targetClip = level5C;
 		}
 	}
 	
@@ -54,9 +84,13 @@ public class persistentAudio : MonoBehaviour {
 				musicSource.clip = currentClip;
 				musicSource.Play ();
 			}
-		} else if (currentMult < musicMult) {
+		} else if (currentMult < musicMult && !muted) {
 			//print ("increasing");
 			currentMult += fadeTime * Time.deltaTime;
+		}
+
+		if (muted && currentMult>0) {
+			currentMult -= fadeTime * Time.deltaTime;
 		}
 	}
 }

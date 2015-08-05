@@ -9,10 +9,11 @@ public class setupFallSequenceTrigger : MonoBehaviour {
 	public GameObject[] checkpoints, fallTriggers;
 	public GameObject fallAndDie;
 	public treeFallTriggerScript boatTrigger;
+	public persistentAudio persAud;
 
 	// Use this for initialization
 	void Start () {
-	
+		persAud = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 	}
 	
 	// Update is called once per frame
@@ -34,5 +35,7 @@ public class setupFallSequenceTrigger : MonoBehaviour {
 			boatTrigger.particles[0] = finalParticles;
 			finalDoor.SetActive(true);
 		}
+		persAud.ToggleMute ();
+		persAud.targetClip = persAud.level4B;
 	}
 }

@@ -21,6 +21,8 @@ public class endGame : MonoBehaviour {
 	public Color nightSpriteColor;
 	public GameObject vineUI;
 
+	public persistentAudio persAud;
+
 	public GameObject homeIsland;
 
 	public GameObject[] bonusFlowers;
@@ -32,6 +34,7 @@ public class endGame : MonoBehaviour {
 		levelMan = GameObject.Find ("persistentGM").GetComponent<levelManager> ();
 		vineUI = levelMan.gameObject.transform.GetChild (0).GetChild (1).gameObject;
 		fadeImage = levelMan.gameObject.transform.GetChild (0).GetChild (2).GetChild (0).gameObject.GetComponent<Image> ();
+		persAud = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 	}
 	
 	// Update is called once per frame
@@ -59,6 +62,7 @@ public class endGame : MonoBehaviour {
 
 		if (fadeImage.color.a > 0.99f && !continueEnd) {
 			ContinueEnd();
+			persAud.targetClip = persAud.level5C;
 			continueEnd = true;
 		}
 		print (fadeImage.color.a);

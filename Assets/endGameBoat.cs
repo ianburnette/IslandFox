@@ -4,6 +4,7 @@ using System.Collections;
 public class endGameBoat : MonoBehaviour {
 
 	public GameObject persGM;
+	public persistentAudio persAud;
 	public GameObject UIprompt;
 	public Animator anim;
 	public GameObject player;
@@ -26,6 +27,7 @@ public class endGameBoat : MonoBehaviour {
 		persGM = GameObject.Find ("persistentGM");
 		vineInventory = persGM.transform.GetChild (0).GetChild (1).gameObject;
 		plantingInventory =persGM.transform.GetChild (0).GetChild (5).gameObject;
+		persAud = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 	//	anim = GetComponent<Animator> ();
 	}
 	
@@ -60,6 +62,8 @@ public class endGameBoat : MonoBehaviour {
 		foreach (GameObject check in otherCheckpoints) {
 			check.SetActive(false);
 		}
+		persAud.ToggleMute ();
+		persAud.targetClip = persAud.level5B;
 	}
 
 	void ResetMove(){
@@ -85,5 +89,6 @@ public class endGameBoat : MonoBehaviour {
 		vineInventory.SetActive (false);
 		setPlayerLoc = true;
 		anim.SetTrigger ("grow");
+		persAud.ToggleMute ();
 	}
 }
