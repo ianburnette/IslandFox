@@ -7,10 +7,14 @@ public class mainMenuGM : MonoBehaviour {
 
 	public GameObject myEventSystem;
 
+	public fadeLogo logoF;
+
 	public bool savedGame;
 	public int savedLevel;
 
 	public GameObject fadeScreen, title;
+
+	public bool logo;
 
 	public int screenShowing;
 
@@ -19,6 +23,7 @@ public class mainMenuGM : MonoBehaviour {
 
 	public EventSystem eventSystem;
 	public GameObject gmEventSystem;
+	public levelManager levelMan;
 
 	public Button resume, newgame;
 
@@ -38,6 +43,8 @@ public class mainMenuGM : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		gmEventSystem = persInv.transform.GetChild (1).gameObject;
 		if (PlayerPrefs.GetInt ("SaveLevel") != 0) {
 			savedGame = true;
 			savedLevel = PlayerPrefs.GetInt("SaveLevel");
@@ -47,6 +54,7 @@ public class mainMenuGM : MonoBehaviour {
 		}
 		persAud = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 		persInv = GameObject.Find ("persistentGM");
+		levelMan = persInv.GetComponent<levelManager> ();
 	}
 
 	public void DecAud(int which){
@@ -68,7 +76,12 @@ public class mainMenuGM : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("A")) {
-			if (screenShowing == 0){
+			if (logo){
+				logoF.CancelInvoke();
+				logoF.startFading();
+				logo = false;
+			}
+			else if (screenShowing == 0){
 				ShowScreen(1);
 				screenShowing = 1;
 			}
@@ -85,7 +98,13 @@ public class mainMenuGM : MonoBehaviour {
 		}
 	}
 
+	public void Quit(){
+		Application.Quit ();
+	}
+
 	void BeginAfterTut(){
+		PlayerPrefs.DeleteAll ();
+		print ("deleted all");
 		LoadThisLevel(1);
 	}
 
@@ -106,10 +125,11 @@ public class mainMenuGM : MonoBehaviour {
 		}
 		myEventSystem.SetActive(false);
 		gmEventSystem.SetActive (true);
-		persInv.GetComponent<PauseManager>().enabled = true;
+		//persInv.GetComponent<PauseManager>().enabled = true;
 		fadeScreen.SetActive (true);
 		persAud.SaveLevels();
-		Application.LoadLevel (thisLevel);
+		//Application.LoadLevel (thisLevel);
+		levelMan.ChangeLevel (thisLevel);
 	}
 
 	public void Resume(){
@@ -124,7 +144,8 @@ public class mainMenuGM : MonoBehaviour {
 //				GameObject newPersInv = (GameObject)GameObject.Instantiate(persInv, transform.position, Quaternion.identity);
 //				newPersInv.gameObject.transform.name = "persistentGM";
 			}
-			Application.LoadLevel (savedLevel);
+			levelMan.ChangeLevel (savedLevel);
+			//Application.LoadLevel (savedLevel);
 		}
 	}
 

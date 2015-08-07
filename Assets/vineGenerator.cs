@@ -17,8 +17,17 @@ public class vineGenerator : MonoBehaviour {
 
 	bool placedAnchor= false;
 
+	public AudioClip destroyClip, crumbleClip;
+	public AudioSource source;
+
+	public void DestroyAudio(){
+		source.PlayOneShot (destroyClip);
+		source.PlayOneShot (crumbleClip, .5f);
+	}
+
 	// Use this for initialization
 	void Start () {
+		source = GetComponent<AudioSource> ();
 		mostRecent = transform.position;
 	}
 	
@@ -85,7 +94,7 @@ public class vineGenerator : MonoBehaviour {
 			latestChunk.GetComponent<VineModelSelector>().SetBefore(6);
 		if (prevPos == Vector3.back * 2f) 
 			latestChunk.GetComponent<VineModelSelector>().SetBefore(5);
-		print (prevPos);
+//		print (prevPos);
 	}
 
 	void SetLastModel(Vector3 newPos){

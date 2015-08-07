@@ -29,13 +29,13 @@ public class setupFallSequenceTrigger : MonoBehaviour {
 			foreach (GameObject trigger in fallTriggers){
 				trigger.SetActive(true);
 			}
-			fallAndDie.SetActive(true);
+			fallAndDie.SetActive(false);
 			boatTrigger.enabled = true;
 			boatTrigger.rbsToActivate[0] = finalPathRB;
 			boatTrigger.particles[0] = finalParticles;
 			finalDoor.SetActive(true);
 		}
-		persAud.ToggleMute ();
+		persAud.ToggleMute (false);
 		persAud.targetClip = persAud.level4B;
 	}
 }

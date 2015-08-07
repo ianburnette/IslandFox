@@ -14,13 +14,21 @@ public class pickupProp : MonoBehaviour {
 	public bool zDisrupt;
 	public Animator anim;
 
+	public AudioClip disruptClip;
+	public AudioSource source;
+
 	// Use this for initialization
 	void Start () {
+
 		//rb = transform.GetChild (0).GetComponent<Rigidbody> ();
-		shadow = transform.GetChild (1).gameObject;
+
 		if (transform.name != "fence1" && transform.name != "fence2") {
+			shadow = transform.Find ("Sphere").gameObject;//GetChild (1).gameObject;
 			anim = GetComponent<Animator> ();
+		} else {
+			shadow = transform.GetChild(1).gameObject;
 		}
+		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +62,7 @@ public class pickupProp : MonoBehaviour {
 		//print ("pushing");
 		if (transform.name != "fence1" && transform.name != "fence2") {
 			if (disruptorPosition.x > transform.position.x) {
-				anim.SetTrigger ("bounceR");
+ 				anim.SetTrigger ("bounceR");
 			} else {
 				anim.SetTrigger ("bounceL");
 			}
@@ -64,6 +72,7 @@ public class pickupProp : MonoBehaviour {
 		if (containsSeed) {
 			SendSeed();
 		}
+		source.PlayOneShot (disruptClip, 0.5f);
 	}
 
 	void SendSeed(){

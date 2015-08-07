@@ -19,6 +19,10 @@ public class PauseManager : MonoBehaviour {
 
 	public Slider musicSlider, masterSlider;
 
+	public GameObject pauseScreenPanel, controlsScreen;
+
+	public GameObject controlsGoBack;
+
 	// Use this for initialization
 	void Start () {
 		//eventMan = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();// as EventSystem;
@@ -26,6 +30,10 @@ public class PauseManager : MonoBehaviour {
 		audioMan = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 		GetSliders ();
 		SetVolumes ();
+	}
+
+	void OnLevelWasLoaded(int level){
+		audioMan = GameObject.Find ("persistentAudioGM").GetComponent<persistentAudio> ();
 	}
 
 	void GetSliders(){
@@ -46,6 +54,7 @@ public class PauseManager : MonoBehaviour {
 		GameObject.Find ("persistentGM").GetComponent<persistentInventory> ().SaveInventory ();
 		audioMan.SaveLevels ();
 		PlayerPrefs.SetInt ("SaveLevel", Application.loadedLevel);
+		//ToggleInventory (false);
 		GetComponent<levelManager> ().ChangeLevel (0);
 	}
 
@@ -88,6 +97,18 @@ public class PauseManager : MonoBehaviour {
 		audioMan.masterVolume = masterSlider.value;
 	}
 
+	public void ViewControls(){
+		pauseScreenPanel.SetActive (false);
+		controlsScreen.SetActive (true);
+		eventMan.SetSelectedGameObject (controlsGoBack, new BaseEventData(eventMan));
+	}
+
+	public void HideControls(){
+		pauseScreenPanel.SetActive (true);
+		controlsScreen.SetActive (false);
+		eventMan.SetSelectedGameObject (resumeButton, new BaseEventData(eventMan));
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -97,10 +118,12 @@ public class PauseManager : MonoBehaviour {
 				PauseScreen(false);
 			}else if (!paused && !inventory){
 				TogglePause();
+				eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
 				PauseScreen(true);
 			}else if (paused && inventory){
 				ToggleInventory(false);
 				PauseScreen(true);
+				eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
 			}
 		}
 		if (Input.GetButtonDown ("Inventory")) {
@@ -136,10 +159,13 @@ public class PauseManager : MonoBehaviour {
 	}
 
 	void TogglePause(){
-		print ("pausing");
+//		print ("pausing");
+		HideControls ();
+
 		Time.timeScale = 1 - Time.timeScale;
 		paused = !paused;
-	//	eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
+		eventMan.SetSelectedGameObject (resumeButton ,new BaseEventData(eventMan));
+		//ToggleInventory (false);
 		//PauseScreen(paused);
 	}
 

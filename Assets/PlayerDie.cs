@@ -15,12 +15,13 @@ public class PlayerDie : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (transform.position.y < minHeight) {
-			Respawn();
+			//Respawn();
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 
 	void Respawn(){
-		transform.position = currentCheckpoint.GetChild (0).position;
+		transform.position = currentCheckpoint.position;
 		rb.velocity = Vector3.zero;
 	}
 

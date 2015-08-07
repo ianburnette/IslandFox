@@ -18,6 +18,7 @@ public class boatActivateTut : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if (col.transform.tag == "Player") {
 			tut.gameObject.SetActive(true);
+			this.enabled = false;
 		}
 	}
 }

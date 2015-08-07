@@ -19,6 +19,8 @@ public class PlayerMove : MonoBehaviour
 	private Vector3 camFocusLocation;
 	public GameObject smokePuff;
 	public float debugh, debugv;
+	public Vector3 hitPoint;
+	public float hitOffset;
 
 	public PlayerInventory inventory;
 	public playerIslandGrow islandGrower;
@@ -66,6 +68,8 @@ public class PlayerMove : MonoBehaviour
 	//setup
 	void Awake()
 	{
+		myCamFocus = GameObject.Find ("Camera Focus").transform;
+		focusControls = myCamFocus.GetComponent<cameraFocusControls> ();
 		camFocusLocation = myCamFocus.position;
 		inventory = GetComponent<PlayerInventory> ();
 		if (GetComponent<playerIslandGrow> () != null) {
@@ -124,6 +128,10 @@ public class PlayerMove : MonoBehaviour
 		//get movement input, set direction to move in
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
+
+//		float h = Input.GetAxis ("Horizontal");
+//		float v = Input.GetAxis ("Vertical");
+
 		debugh = h;
 		debugv = v;
 		//only apply vertical input to movemement, if player is not sidescroller
@@ -131,7 +139,9 @@ public class PlayerMove : MonoBehaviour
 			direction = (screenMovementForward * v) + (screenMovementRight * h);
 		else
 			direction = Vector3.right * h;
-		moveDirection = transform.position + direction;
+//		print ("direction is " + direction);
+//		print ("normalized direction is " + direction.normalized);
+		moveDirection = transform.position + direction.normalized;
 		Animate (moveDirection, h, v);
 	}
 
@@ -303,7 +313,7 @@ public class PlayerMove : MonoBehaviour
 					else
 						onEnemyBounce = 0;
 					//moving platforms
-					if (hit.transform.tag == "MovingPlatform" || hit.transform.tag == "Pushable")
+					if (hit.transform.tag == "Pushable" || hit.transform.tag == "Pushable")
 					{
 						movingObjSpeed = hit.transform.GetComponent<Rigidbody>().velocity;
 						print ("moving object speed is " + movingObjSpeed);
@@ -327,6 +337,8 @@ public class PlayerMove : MonoBehaviour
 					if (hit.transform.tag != "Resetter"){
 						focusControls.StandingOn(hit.point.y);
 					}
+					hitPoint = hit.normal;
+					//transform.position = new Vector3(transform.position.x, hitPoint.y + hitOffset, transform.position.z);
 					if (standingOnTransform != hit.transform){
 						standingOnTransform = hit.transform;
 					}
@@ -350,7 +362,7 @@ public class PlayerMove : MonoBehaviour
 		//play landing sound
 		if(groundedCount < 0.25 && groundedCount != 0 && !GetComponent<AudioSource>().isPlaying && landSound && GetComponent<Rigidbody>().velocity.y < 1)
 		{
-			GetComponent<AudioSource>().volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
+			//GetComponent<AudioSource>().volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
 			GetComponent<AudioSource>().clip = landSound;
 			GetComponent<AudioSource>().Play ();
 			Puff();
@@ -404,5 +416,10 @@ public class PlayerMove : MonoBehaviour
 		GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z);
 		GetComponent<Rigidbody>().AddRelativeForce (jumpVelocity, ForceMode.Impulse);
 		airPressTime = 0f;
+	}
+
+	void OnDrawGizmos(){
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere (hitPoint, .3f);
 	}
 }

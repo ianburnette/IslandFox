@@ -100,7 +100,7 @@ public class persistentInventory : MonoBehaviour {
 	}
 
 	public void QuestCollect (int which){
-		print ("quest collect " + which);
+//		print ("quest collect " + which);
 		if (which == 0) {
 			haveMast = 1;
 			mastImage.gameObject.SetActive(true);// = true;
@@ -156,7 +156,7 @@ public class persistentInventory : MonoBehaviour {
 	}
 	
 	void OnLevelWasLoaded(int level) {
-		print ("level loaded " + Application.loadedLevel);
+//		print ("level loaded " + Application.loadedLevel);
 
 		FindInventoryAssociations ();
 		if (level == 0) {
@@ -166,6 +166,12 @@ public class persistentInventory : MonoBehaviour {
 			vineHUD.SetActive(false);
 		}
 		if (level == 2) {
+			vineHUD.SetActive(true);
+		}if (level == 3) {
+			vineHUD.SetActive(true);
+		}if (level == 4) {
+			vineHUD.SetActive(true);
+		}if (level == 5) {
 			vineHUD.SetActive(true);
 		}
 

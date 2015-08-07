@@ -72,9 +72,21 @@ public class cameraFocusControls : MonoBehaviour {
 //			rb.velocity = new Vector3(playerRB.velocity.x, rb.velocity.y, rb.velocity.z);
 //		}
 
+//		transform.position = Vector3.Lerp (
+//			transform.position,
+//			new Vector3(player.transform.position.x + playerRB.velocity.x, groundHeight + yOffset, player.transform.position.z + playerRB.velocity.z),
+//			1f);
+
+//		Gizmos.DrawSphere (new Vector3(transform.position.x + rb.velocity.x, transform.position.y+2f, transform.position.z+rb.velocity.z), .4f);
+
+
+		//USE THIS
 		transform.position = new Vector3 (player.transform.position.x,
 		                                 groundHeight + yOffset,
 		                                 player.transform.position.z);
+
+
+
 			//player.transform.position + new Vector3 (currentXoffset, yOffset, currentZoffset);
 	}
 

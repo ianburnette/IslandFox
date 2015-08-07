@@ -7,6 +7,9 @@ public class showShadow : MonoBehaviour {
 	Camera cam;
 	public LayerMask mask;
 	public float mult;
+	public Transform hitting;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +27,8 @@ public class showShadow : MonoBehaviour {
 	void CheckIfBlocked(){
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, player.transform.position - transform.position + (Vector3.up * mult), out hit, 100f, mask)) {
-			print (hit.transform);
+			hitting = hit.transform;
+//			print (hit.transform);
 			if (hit.transform.tag != "Player" && cam.enabled == false){
 				cam.enabled = true;
 			}else if ( hit.transform.tag == "Player" && cam.enabled == true){

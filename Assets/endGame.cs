@@ -29,6 +29,9 @@ public class endGame : MonoBehaviour {
 
 	public levelManager levelMan;
 
+	public Color newFogColor;
+	public GameObject newFog;
+
 	// Use this for initialization
 	void Start () {
 		levelMan = GameObject.Find ("persistentGM").GetComponent<levelManager> ();
@@ -42,7 +45,7 @@ public class endGame : MonoBehaviour {
 		if (Input.GetButtonDown ("X") && showingUI && !endedOnce) {
 			SetupEnd();
 		}if (Input.GetButtonDown ("X") && showingUI && endedOnce) {
-			print ("ending?");
+			//print ("ending?");
 			fadeIncrement = 0f;
 			levelMan.fadeIncrement = .01f;
 			levelMan.ChangeLevel(0);
@@ -65,7 +68,7 @@ public class endGame : MonoBehaviour {
 			persAud.targetClip = persAud.level5C;
 			continueEnd = true;
 		}
-		print (fadeImage.color.a);
+		//print (fadeImage.color.a);
 	}
 
 	void SetupEnd(){
@@ -74,9 +77,11 @@ public class endGame : MonoBehaviour {
 	}
 
 	void ContinueEnd(){
-		print ("continueing");
+		//print ("continueing");
+		GameObject.Find ("lowerClouds 1").GetComponent<AudioSource> ().Stop ();
+		newFog.SetActive (true);
 		RenderSettings.skybox = newSkybox;
-		RenderSettings.fog = false;
+		RenderSettings.fogColor = newFogColor;
 		grassRenderer.material = blueGrass;
 		oldLights.SetActive (false);
 		newLights.SetActive (true);

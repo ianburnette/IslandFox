@@ -6,10 +6,17 @@ public class VineModelSelector : MonoBehaviour {
 	public int before, after;
 	public GameObject straight, end, corner;
 	public GameObject normalAnchor, altAnchor;
+
+	public AudioClip placeClip;
+	public AudioSource source;
+
+	public Sprite[] vineSprites;
 	//public float vertOffset = .8f;
 	
 	// Use this for initialization
 	void Start () {
+		source = GetComponent<AudioSource> ();
+		source.PlayOneShot (placeClip, 1f);
 		straight.SetActive (false);
 		corner.SetActive (false);
 		end.SetActive (true);
@@ -30,13 +37,14 @@ public class VineModelSelector : MonoBehaviour {
 			else if (before == 6)
 				end.transform.rotation = Quaternion.Euler(new Vector3(0,270,0));
 		}
-		print ("setbefore");
+	//	print ("setbefore");
 	}
 
 	public void ChooseSprite (GameObject vineChunk){
 		int rand = Random.Range (0, 3);
-		print ("vine rand is " + rand);
+//		print ("vine rand is " + rand);
 		vineChunk.transform.GetChild(rand).gameObject.SetActive(true);
+		vineChunk.transform.GetChild (rand).GetComponent<SpriteRenderer> ().sprite = vineSprites [Random.Range (0, 3)];
 	
 
 	}

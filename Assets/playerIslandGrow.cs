@@ -22,6 +22,8 @@ public class playerIslandGrow : MonoBehaviour {
 
 	public persistentInventory persInv;
 
+	public Color rainColor;
+
 
 	
 	//public Transform currentVineUI, currentVine;
@@ -56,6 +58,13 @@ public class playerIslandGrow : MonoBehaviour {
 		if (Input.GetButtonDown ("Y") && canPlace) {
 			PlaceVine();
 		}
+		if (Input.GetButtonDown ("B")) {
+			SkipType();
+		}
+	}
+
+	void SkipType(){
+		currentItemToPlace++;
 	}
 
 	void UpdateCurrentCount(){
@@ -139,7 +148,9 @@ public class playerIslandGrow : MonoBehaviour {
 			openDoor.SetActive(true);
 		}
 
-		currentSeedImage.sprite = persInv.seedInventory [currentItemToPlace].transform.parent.GetChild (2).GetComponent<Image> ().sprite;
+		if (currentItemToPlace < 12) {
+			currentSeedImage.sprite = persInv.seedInventory [currentItemToPlace].transform.parent.GetChild (2).GetComponent<Image> ().sprite;
+		}
 
 //		vineSeedQuant = persInv.vineCount;
 //		vineUIQuant.text = "" + vineSeedQuant;
@@ -219,6 +230,13 @@ public class playerIslandGrow : MonoBehaviour {
 			newPlant.transform.Rotate(0,90,0);
 		}
 	
+		SetSpritesRecursively (newPlant.transform);
+
+//		SpriteRenderer[] sprites = gameObject.FindObjectsOfType(typeof(SpriteRenderer)) as SpriteRenderer[];
+//		foreach (SpriteRenderer sprt in sprites) {
+//			sprt.color = rainColor;
+//		}
+
 //		vineGen = newVine.GetComponent<vineGenerator> ();
 //		vineGen.player = transform;
 //		currentVine = newVine.transform;
@@ -229,6 +247,20 @@ public class playerIslandGrow : MonoBehaviour {
 		if (Application.loadedLevel == 4) {
 			
 		}
+	}
+
+	void SetSpritesRecursively(Transform plant){
+		if (plant.transform.childCount != 0) {
+			foreach (Transform plantChild in plant){
+				SetSpritesRecursively(plantChild);
+			}
+
+		}
+		if (plant.GetComponent<SpriteRenderer>() != null) {
+			SpriteRenderer spriteRend = plant.GetComponent<SpriteRenderer>();
+			spriteRend.color = rainColor;
+		}
+
 	}
 	
 	Vector3 CalcPos(){

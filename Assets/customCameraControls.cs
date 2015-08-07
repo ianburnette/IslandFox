@@ -8,19 +8,21 @@ public class customCameraControls : MonoBehaviour {
 	public Vector3[] camVectors;
 	public Vector3[] camRotations;
 	public int cameraPosition; //1=close, 2=med, 3=far
-	public int cameraFocusDirection = 3; //1=n, 2=s, 3=w, 4=e
+	public int cameraFocusDirection = 2; //1=n, 2=s, 3=w, 4=e
 	public float posChangeTime;
 	public float currentCamHeight, currentCamDist, cameraHeightModifier;
 	public bool inDialogue;
-	public int stateToReturnTo = 2;
+	public int stateToReturnTo = 3;
 	public float heightModBase = 2f;
 	public float camMoveSpeed, camDistMod;
 	public Vector3 currentCamRotation;
 
 	// Use this for initialization
 	void Start () {
-		SetCameraPosition (2);
-		stateToReturnTo = 2;
+		player = GameObject.Find ("Player").transform;
+		camFocus = GameObject.Find ("Camera Focus").transform;
+		SetCameraPosition (3);
+		stateToReturnTo = 3;
 	}
 	
 	// Update is called once per frame

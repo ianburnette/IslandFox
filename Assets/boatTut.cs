@@ -4,8 +4,8 @@ using System.Collections;
 
 public class boatTut : MonoBehaviour {
 
-	public Image panel1, panel2, button1, button2, button3, button4;
-	public Text text1, text2;
+	public Image panel1, panel2, button1, button2, button3, button4, arrow1, arrow2;
+	public Text text1, text2, text3, text4;
 
 	public float fadeTime, fadeAmt;
 
@@ -37,9 +37,13 @@ public class boatTut : MonoBehaviour {
 			FadeImage(button2);
 			FadeImage(button3);
 			FadeImage(button4);
+			FadeImage(arrow1);
+			FadeImage(arrow2);
 
 			FadeText (text1);
 			FadeText (text2);
+			FadeText (text3);
+			FadeText (text4);
 		
 			if (panel1.color.a <= 0){
 				Destroy (gameObject);

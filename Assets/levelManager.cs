@@ -13,6 +13,10 @@ public class levelManager : MonoBehaviour {
 	public bool changeLevel;
 	public int levelToLoad;
 
+	public bool reachedTree;
+
+	public GameObject eventSystem;
+
 	void Awake(){
 		if (FindObjectsOfType(GetType()).Length > 1)
 		{
@@ -21,11 +25,19 @@ public class levelManager : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level){
-		if (level == 0) {
+		loadingText.SetActive (false);
+		if (level != 0) {
+			eventSystem.SetActive(true);
 			//Destroy (gameObject);
 		}
 		if (level != 0 && level != 1) {
 			PlayerPrefs.SetInt("SavedLevel", level);
+		}
+		if (level == 4 && reachedTree) {
+			Transform player = GameObject.Find ("Player").transform;
+			player.position = GameObject.Find ("spawnLocation1").transform.position;
+			Transform boat = GameObject.Find ("boat").transform;
+			boat.position = GameObject.Find ("spawnLocation0").transform.position;
 		}
 	}
 
@@ -43,7 +55,7 @@ public class levelManager : MonoBehaviour {
 		if (newLevel == 0) {
 			Destroy (GameObject.Find ("persistentAudioGM"));
 			GameObject.Find ("EventSystem").SetActive (false);
-			print ("deactivating events");
+			//print ("deactivating events");
 			GameObject.Find ("HUDInventoryCanvas").SetActive (false);
 			GetComponent<PauseManager> ().enabled = false;
 		} else {
@@ -52,9 +64,10 @@ public class levelManager : MonoBehaviour {
 
 	}
 
+
 	void FadeOut(){
 		targetAlpha = 1f;
-		loadingText.SetActive (true);
+	//	loadingText.SetActive (true);
 	}
 
 	// Use this for initialization
@@ -67,16 +80,26 @@ public class levelManager : MonoBehaviour {
 	void Update () {
 		if (fadeImage.color.a > targetAlpha) {
 			fadeImage.color = new Color (fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a - (fadeIncrement * fadeTime));
-		}else if (fadeImage.color.a < targetAlpha) {
+			if (loadingText.activeSelf == true) {
+				loadingText.SetActive (false);
+			}
+		}else if (fadeImage.color.a < targetAlpha && changeLevel) {
+			if (loadingText.activeSelf == false){
+				loadingText.SetActive(true);
+			}
+
 			fadeImage.color = new Color (fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + (fadeIncrement * fadeTime));
 		}
 		if (changeLevel && fadeImage.color.a >= targetAlpha ) {
-			print ("changing?");
-			loadingText.SetActive(true);
+//		print ("changing?");
+			//loadingText.SetActive(true);
 			changeLevel = false;
 			GameObject.Find ("persistentGM").GetComponent<persistentGMScript>().comingFrom = Application.loadedLevel;
 			Application.LoadLevel(levelToLoad);
 			targetAlpha = 0f;
+		
+		}
+		if (loadingText.activeSelf == true && fadeImage.color.a < targetAlpha) {
 			loadingText.SetActive (false);
 		}
 		if (debug) {

@@ -7,15 +7,26 @@ public class persistentGMScript : MonoBehaviour {
 	public Transform player, boat;
 	public Vector3 boatOffset;
 
+	public float baseAccel, airAccel, additionalGravity, jumpForce;
+
 	// Use this for initialization
 	void Start () {
 		GameObject.DontDestroyOnLoad (gameObject);
+
 	}
 
 	void OnLevelWasLoaded(int level){
-
-		print ("loading level number " + level  + ", coming from " + comingFrom);
-		SetPlayerLocation(level);
+		if (level != 0) {
+			FindPlayer ();
+			player.GetComponent<PlayerMove> ().accel = baseAccel;
+			player.GetComponent<PlayerMove> ().additionalGravityForce = additionalGravity;
+			player.GetComponent<PlayerMove> ().airAccel = airAccel;
+			player.GetComponent<PlayerMove> ().jumpForce = new Vector3 (0,jumpForce, 0);//airAccel;
+			player.GetComponent<PlayerMove> ().secondJumpForce = new Vector3 (0,jumpForce, 0);
+			player.GetComponent<PlayerMove> ().thirdJumpForce = new Vector3 (0,jumpForce, 0);
+		}
+//		print ("loading level number " + level  + ", coming from " + comingFrom);
+	//	SetPlayerLocation(level);
 	}
 
 	void SetPlayerLocation(int levelToSet){

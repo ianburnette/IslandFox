@@ -42,9 +42,17 @@ public class NPCDialogueScript : MonoBehaviour {
 	private bool _showing;
 	private string _text;
 
+	public AudioClip nextClip;
+	public AudioSource source;
+
+	public int skipBackIndex;
+
 	void OnEnable(){
+		nextClip = Resources.Load ("click3") as AudioClip;
+
 		gm = GameObject.Find ("persistentGM");
 		player = GameObject.Find ("Player").transform;
+		source = player.GetComponent<AudioSource> ();
 		Setup ();
 //		Dialoguer.events.onStarted += onStarted;
 //		Dialoguer.events.onEnded += onEnded;
@@ -53,6 +61,7 @@ public class NPCDialogueScript : MonoBehaviour {
 	
 	void Setup(){
 		dialoguePanels = gm.transform.GetChild (0).GetChild (0).gameObject;
+		dialoguePanels.SetActive (false);
 		dialoguePanelContents = dialoguePanels.transform.GetChild (1).GetChild (0).GetComponent<Text> ();
 		dialogueSpeakerName = dialoguePanels.transform.GetChild (0).GetChild (0).GetComponent<Text> ();
 	}
@@ -69,7 +78,8 @@ public class NPCDialogueScript : MonoBehaviour {
 		ShowPanels (false);
 		FreezePlayer (false);
 		Camera.main.GetComponent<customCameraControls> ().Dialogue (false);
-		if (dialogueProgression == 0 && !mom) {
+		if ((dialogueProgression == 0 || dialogueProgression == 1 || dialogueProgression == 2) && !mom && dialogueIndex.Length>dialogueProgression+1) {
+//			print ("dialogue length is " + dialogueIndex.Length + " and dialogue progression is " + dialogueProgression);
 			dialogueProgression ++;
 		} else if (dialogueProgression == 1 && mom) {
 			dialogueProgression++;
@@ -107,10 +117,13 @@ public class NPCDialogueScript : MonoBehaviour {
 	}
 
 	void ShowDialogue(){
+		source.PlayOneShot(nextClip, 1f);
 		if (dialogueProgression == 0) {
 			dialoguePanelContents.text = dialogue1[dialogueIndex[0]];
 			dialogueSpeakerName.text = speaker1[dialogueIndex[0]];
 		}if (dialogueProgression == 1) {
+			//print ("trying to show");
+			///print (dialogue2[dialogueIndex[1]]);
 			dialoguePanelContents.text = dialogue2[dialogueIndex[1]];
 			dialogueSpeakerName.text = speaker2[dialogueIndex[1]];
 		}if (dialogueProgression == 2) {
@@ -125,6 +138,7 @@ public class NPCDialogueScript : MonoBehaviour {
 	void ContinueDialogue(){
 		if (!Ended ()) {
 			dialogueIndex[dialogueProgression]++;
+			source.PlayOneShot(nextClip, 1f);
 			ShowDialogue ();
 		} else {
 			EndDialogue();
@@ -132,7 +146,10 @@ public class NPCDialogueScript : MonoBehaviour {
 	}
 
 	void EndDialogue(){
-
+		if (dialogueProgression == dialogueIndex.Length - 1) {//at end of possible dialogues
+			dialogueIndex[dialogueProgression] = skipBackIndex;
+		}
+		source.PlayOneShot(nextClip, 1f);
 		onEnded ();
 	}
 
@@ -209,12 +226,14 @@ public class NPCDialogueScript : MonoBehaviour {
 			if (state == true){
 				player.GetComponent<Health>().enabled=false;
 				player.GetComponent<PlayerMove>().enabled=false;
+				player.GetComponent<PlayerInventory>().enabled=false;
 				player.GetComponent<cameraChanger>().enabled=false;
 				player.GetComponent<Rigidbody>().isKinematic = true;
 				player.GetComponent<Animator>().SetBool("moving", false);
 			}else{
 				player.GetComponent<Health>().enabled=true;
 				player.GetComponent<PlayerMove>().enabled=true;
+				player.GetComponent<PlayerInventory>().enabled=true;
 				player.GetComponent<cameraChanger>().enabled=true;
 				player.GetComponent<Rigidbody>().isKinematic = false;
 			}

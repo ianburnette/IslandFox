@@ -14,6 +14,7 @@ public class Resetter : MonoBehaviour {
 			check.GetComponent<CheckpointSingle>().resetterScript = this;
 		}
 		player = GameObject.Find ("Player").transform;
+		playerRB = player.GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame

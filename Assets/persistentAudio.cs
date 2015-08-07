@@ -60,8 +60,9 @@ public class persistentAudio : MonoBehaviour {
 		}
 	}
 
-	public void ToggleMute(){
-		muted = !muted;
+	public void ToggleMute(bool which){
+		print ("toggled");
+		muted = which;
 	}
 
 	void ChangeSong(int songToChange){

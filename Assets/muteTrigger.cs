@@ -17,7 +17,7 @@ public class muteTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		if (col.transform.tag == "Player") {
-			persAud.ToggleMute();
+			persAud.ToggleMute(true);
 			Destroy (gameObject);
 		}
 	}

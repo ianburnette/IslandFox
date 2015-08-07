@@ -30,12 +30,12 @@ public class blinkPress : MonoBehaviour {
 
 	void Press(){
 		buttonImage.sprite = pressed;
-		print ("press");
+//		print ("press");
 	}
 
 	void UnPress(){
 		buttonImage.sprite = unpressed;
-		print ("unpress");
+//		print ("unpress");
 	}
 
 }

@@ -58,19 +58,22 @@ public class Coin : MonoBehaviour
 			Debug.LogWarning ("No pickup radius 'bounds' trigger attached to coin: " + transform.name + ", one has been added automatically", bounds);
 		}
 	}
-	
+
+
+
 	void Start()
 	{
 	
 		player = GameObject.Find("Player").transform;
-		if (seedType == 0) {
+		if (seedType == 0 || seedType == 1) {
 			collected = true;
 		}
 	}
 
 	void OnEnable(){
 		//transform.position = Vector3.Lerp (transform.position, transform.position + (Vector3.up * 2f), jumpSpeed * Time.deltaTime);
-		if (seedType == 0) {
+		player = GameObject.Find("Player").transform;
+		if (seedType == 0 || seedType == 1) {
 			iTween.MoveBy (gameObject, iTween.Hash (
 			"y", 3,
 			"time", 1f
@@ -86,11 +89,11 @@ public class Coin : MonoBehaviour
 		if(triggerParent.collided)
 			collected = true;
 		
-		if (collected && !zoomed && seedType == 0) {
+		if (collected && !zoomed && (seedType == 0 || seedType == 1)) {
 			Invoke ("Zoom", .5f);
 			zoomed = true;
 
-		} else if (collected && !zoomed && seedType != 0) {
+		} else if (collected && !zoomed && seedType != 0 && seedType != 1 ) {
 			Zoom ();
 			zoomed = true;
 		}
@@ -116,7 +119,7 @@ public class Coin : MonoBehaviour
 	
 	void CoinGet()
 	{
-		print ("getting type " + seedType);
+//		print ("getting type " + seedType);
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 		if (seedType == 0) {

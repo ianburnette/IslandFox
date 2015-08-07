@@ -121,6 +121,10 @@ public class Health : MonoBehaviour
 	//calculate impact damage on collision
 	void OnCollisionEnter(Collision col)
 	{
+
+		if (col.transform.tag == "Player") {
+			currentHealth = 0;
+		}
 		if(!GetComponent<AudioSource>().isPlaying && impactSound)
 		{
 			GetComponent<AudioSource>().clip = impactSound;

@@ -19,6 +19,10 @@ public class endGameBoat : MonoBehaviour {
 	public Transform thisCheckpoint;
 	public GameObject[] otherCheckpoints;
 
+	public AudioSource source;
+
+	public AudioClip clip1, clip2, clip3;
+
 	public GameObject plantingInventory, vineInventory;
 
 	// Use this for initialization
@@ -43,7 +47,29 @@ public class endGameBoat : MonoBehaviour {
 		}
 	}
 
+	void DestroyVines(){
+		//print ("destroying vines");
+		GameObject[] vines = GameObject.FindGameObjectsWithTag ("Vine");
+		
+		foreach (GameObject vine in vines) {
+			vine.GetComponent<vineGenerator>().sections = 0;
+			if (vine.tag != "UI"){
+				
+				//child.GetComponent<Collider>().isTrigger = true;
+			//	Instantiate(vineParticles, vine.transform.position, Quaternion.identity);
+				vine.gameObject.SetActive(false);
+				if (Random.value < 0.5f){
+				//	Instantiate(sub1, vine.transform.position, Quaternion.identity);
+				}if (Random.value < 0.5f){
+				//	Instantiate(sub2, vine.transform.position, Quaternion.identity);
+				}
+			}
+		}
+		
+	}
+
 	public void FinishedAnimation(){
+		DestroyVines ();
 		anim.speed = 0;
 		camCont.camDistMod = 0;
 		foreach (Rigidbody rb in islandRBs) {
@@ -62,12 +88,12 @@ public class endGameBoat : MonoBehaviour {
 		foreach (GameObject check in otherCheckpoints) {
 			check.SetActive(false);
 		}
-		persAud.ToggleMute ();
+		persAud.ToggleMute (false);
 		persAud.targetClip = persAud.level5B;
 	}
 
 	void ResetMove(){
-		player.GetComponent<PlayerMove> ().accel = 70;
+		player.GetComponent<PlayerMove> ().accel = 500;
 		plantingInventory.SetActive (true);
 		player.GetComponent<PlayerInventory> ().enabled = false;
 		player.GetComponent<playerIslandGrow> ().enabled = true;
@@ -86,9 +112,27 @@ public class endGameBoat : MonoBehaviour {
 	}
 
 	void StartAnimation(){
+		GetComponent<AudioSource> ().Play ();
+		PlayThird ();
+		Invoke ("PlayFirst", 1f);
+		Invoke ("PlaySecond", 2f);
+		Invoke ("PlayThird", 4f);
+		transform.GetChild (0).gameObject.SetActive (false);
 		vineInventory.SetActive (false);
 		setPlayerLoc = true;
 		anim.SetTrigger ("grow");
-		persAud.ToggleMute ();
+		persAud.ToggleMute (true);
+	}
+
+	void PlayFirst(){
+		source.PlayOneShot (clip1, .8f);
+	}
+
+	void PlaySecond(){
+		source.PlayOneShot (clip2);
+	}
+
+	void PlayThird(){
+		source.PlayOneShot (clip3);
 	}
 }

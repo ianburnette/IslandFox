@@ -13,9 +13,11 @@ public class boatControls : MonoBehaviour {
 	public float targetHeight, heightCorrectSpeed, targetTargetHeight, bobTime;
 	public LayerMask mask;
 	public float frontHeight, backHeight;
+	public GameObject puff;
 
 	// Use this for initialization
 	void Start () {
+		puff = Resources.Load ("Smoke Puff") as GameObject;
 		baseSpeed = speed;
 		rb = GetComponent<Rigidbody> ();
 		sprite.parent = null;
@@ -152,6 +154,7 @@ public class boatControls : MonoBehaviour {
 
 	void Stroke(){
 		rb.AddForce (Vector3.up * strokeForce);
+		Instantiate (puff, transform.position - Vector3.up, Quaternion.identity);
 	}
 
 	void MoveDirection(){
